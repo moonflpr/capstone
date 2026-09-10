@@ -8,15 +8,6 @@ use App\Models\StudentProgress;
 class QuizPublishedObserver
 {
     /**
-     * The pre/post attempt phases whose completion depends on the published
-     * quiz. Reading progress (phase "reading") tracks the module PDF, not
-     * the quiz, so it is deliberately left untouched.
-     *
-     * @var list<string>
-     */
-    private const QUIZ_PHASES = ['pre', 'post'];
-
-    /**
      * Handle the QuizPublished "deleted" event.
      *
      * Removing the published quiz for a topic pulls the questions every
@@ -31,7 +22,7 @@ class QuizPublishedObserver
     {
         StudentProgress::query()
             ->where('topic_key', $quizPublished->topic_key)
-            ->whereIn('phase', self::QUIZ_PHASES)
+            ->whereIn('phase', StudentProgress::QUIZ_PHASES)
             ->delete();
     }
 }
