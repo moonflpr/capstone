@@ -124,7 +124,7 @@
 
         <a href="#top" class="logo" aria-label="Math Learning, back to top">
             <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo-mark"/></svg>
-            <span>Math Learning</span>
+            <span>Math Learn</span>
         </a>
 
         <button class="nav__toggle" type="button" data-nav-toggle
@@ -973,7 +973,7 @@
             <div class="footer__brand">
                 <a href="#top" class="logo" aria-label="Math Learning, back to top">
                     <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo-mark"/></svg>
-                    <span>Math Learning</span>
+                    <span>Math Learn</span>
                 </a>
                 <p>Empowering students through interactive mathematics education.</p>
 
