@@ -132,6 +132,9 @@ body {
 }
 
 h1, h2, h3, p, ul, ol, figure { margin: 0; }
+
+/* No one-word last lines ("up.", "it.") in short paragraphs. */
+p { text-wrap: pretty; }
 ul, ol { padding: 0; list-style: none; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -551,6 +554,12 @@ h3 {
     color: #fff;
 }
 
+/* Two columns: size the title to its half of the screen, so "has a next
+   step." stays on one line on 1024-1279px laptops too. */
+@media (min-width: 1024px) {
+    .hero__title { font-size: clamp(3.25rem, 0.5rem + 4.4vw, 4.25rem); }
+}
+
 .hero__title span { display: block; }
 .hero__title em { font-style: normal; color: #93c5fd; }
 
@@ -672,8 +681,13 @@ h3 {
 
 @media (min-width: 1024px) {
     .hero__float { display: block; }
-    .hero__float--chat { right: -32px; bottom: -40px; }
-    .hero__float--chip { left: -32px; top: -22px; }
+    .hero__float--chat { right: -12px; bottom: -40px; }
+    .hero__float--chip { left: -24px; top: -22px; }
+}
+
+@media (min-width: 1280px) {
+    .hero__float--chat { right: -32px; }
+    .hero__float--chip { left: -32px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -688,12 +702,16 @@ h3 {
 
 /* The Math AI Assistant window, open over the dashboard like in the app. */
 .chat-card {
-    width: 17.5rem;
+    width: 16rem;
     overflow: hidden;
     border-radius: var(--radius);
     background: var(--card);
     box-shadow: var(--shadow-lg);
     color: var(--text);
+}
+
+@media (min-width: 1280px) {
+    .chat-card { width: 17.5rem; }
 }
 
 .chat-card__head,
@@ -896,25 +914,30 @@ h3 {
     .stats { padding-top: var(--s-12); }
 }
 
+/* Phones: one compact row of three (icon over number), so the strip is a
+   single glance instead of three stacked cards. Icon beside text from 640px. */
 .stats__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--s-3);
-}
-
-@media (min-width: 640px) {
-    .stats__grid { grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-2);
 }
 
 .stat {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--s-4);
-    padding: var(--s-5);
+    gap: var(--s-2);
+    padding: var(--s-4) var(--s-2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
     box-shadow: var(--shadow);
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .stats__grid { gap: var(--s-4); }
+    .stat { flex-direction: row; gap: var(--s-4); padding: var(--s-5); text-align: left; }
 }
 
 /* Gradient icon tiles: the dashboards' action-card icons. */
@@ -952,15 +975,24 @@ h3 {
     box-shadow: 0 6px 16px rgb(168 85 247 / 0.28);
 }
 
+.stat__icon { width: 40px; height: 40px; border-radius: 12px; }
+.stat__icon .icon { width: 19px; height: 19px; }
+
 .stat__num {
-    font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+    font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
 }
 
-.stat__label { margin-top: 2px; font-size: 0.875rem; font-weight: 600; color: var(--text-3); }
+.stat__label { margin-top: 2px; font-size: 0.75rem; font-weight: 600; line-height: 1.35; color: var(--text-3); }
+
+@media (min-width: 640px) {
+    .stat__icon { width: 48px; height: 48px; border-radius: 13px; }
+    .stat__icon .icon { width: 22px; height: 22px; }
+    .stat__label { font-size: 0.875rem; }
+}
 
 /* ================= 10. FEATURES (bento) ================= */
 .bento {
@@ -982,21 +1014,39 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: var(--s-5);
-    padding: var(--s-6);
+    padding: var(--s-5);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
     box-shadow: var(--shadow);
 }
 
+/* Phones: icon beside the heading, so every tile is a little shorter.
+   Icon above the heading from 640px, where tiles sit side by side. */
+.tile > div:first-child {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+}
+.tile > div:first-child > p { grid-column: 1 / -1; }
+
+.tile .tile__icon { width: 44px; height: 44px; border-radius: 12px; }
+
+.tile--big h3 { font-size: 1.25rem; }
+.tile p { margin-top: var(--s-3); color: var(--text-3); }
+
+@media (min-width: 640px) {
+    .tile { padding: var(--s-6); }
+    .tile > div:first-child { display: block; }
+    .tile .tile__icon { width: 48px; height: 48px; margin-bottom: var(--s-4); border-radius: 13px; }
+    .tile--big h3 { font-size: 1.375rem; }
+    .tile p { margin-top: var(--s-2); }
+}
+
 @media (min-width: 768px) {
     .tile--big { padding: var(--s-8); }
 }
-
-.tile__icon { margin-bottom: var(--s-4); }
-
-.tile--big h3 { font-size: 1.375rem; }
-.tile p { margin-top: var(--s-2); color: var(--text-3); }
 
 /* `.tile p` is more specific than the bubble and quiz classes, so restore
    their own colors and spacing inside tiles. */
@@ -1075,39 +1125,81 @@ h3 {
 .mini-quiz__fb { font-size: 0.875rem; }
 .mini-quiz__fb b { color: #15803d; }
 
-/* Small tile visuals */
-.spark { width: 120px; height: 48px; }
+/* Small tile visuals. Each one is roughly the same height (about 100px),
+   so the four small tiles in a row don't leave big empty gaps. */
+.spark { width: 100%; max-width: 180px; height: auto; }
+
+@media (min-width: 640px) {
+    .spark { max-width: 240px; }
+}
 .spark rect { fill: #bfdbfe; }
 .spark rect:last-child { fill: url(#brand-grad); }
-
-.avatars { display: flex; }
 
 /* Same as the dashboards' student avatars. */
 .avatar {
     display: grid;
     place-items: center;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
+    flex: none;
     border-radius: 50%;
     background: var(--blue-grad);
     color: #fff;
     box-shadow: 0 0 0 2px var(--card);
-    font-size: 0.6875rem;
+    font-size: 0.625rem;
     font-weight: 800;
 }
-.avatar + .avatar { margin-left: -5px; }
+
+/* Teacher tile: a mini class list, one progress bar per student. */
+.mini-roster { display: grid; gap: var(--s-2); }
+.mini-roster li { display: flex; align-items: center; gap: var(--s-3); }
+.mini-roster .bar { flex: 1; }
+
+/* Offline tile: a downloaded assessment. */
+.saved-file {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+}
+
+.saved-file__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 10px;
+    background: var(--green-light);
+    color: var(--green);
+}
+.saved-file__icon .icon { width: 20px; height: 20px; stroke-width: 2; }
+
+.saved-file strong {
+    display: block;
+    overflow: hidden;
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.saved-file__body { display: grid; gap: 4px; min-width: 0; justify-items: start; }
 
 .saved {
     display: inline-flex;
     align-items: center;
-    gap: var(--s-2);
-    padding: 6px 12px;
+    gap: 6px;
+    padding: 3px 10px;
     border-radius: var(--radius-pill);
     background: var(--green-light);
     color: #15803d;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 700;
 }
+.saved .icon { width: 14px; height: 14px; stroke-width: 2.5; }
 
 /* Topics unlocking in order: done, current, locked. */
 .topic-list { display: grid; gap: 6px; }
@@ -1116,11 +1208,11 @@ h3 {
     display: flex;
     align-items: center;
     gap: var(--s-2);
-    padding: 7px 12px;
+    padding: 5px 12px;
     border: 1px solid var(--border);
     border-radius: 10px;
     background: var(--bg);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     color: var(--text-2);
 }
@@ -1145,12 +1237,16 @@ h3 {
     .roles { grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
 }
 
+/* Stacked cards (below 900px): icon beside the heading to save height.
+   Side-by-side cards from 900px: icon above, link pinned to the bottom. */
 .role {
     --role: var(--blue);
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-3);
-    padding: var(--s-6);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+    row-gap: var(--s-3);
+    padding: var(--s-5);
     border: 1px solid var(--border);
     border-top: 4px solid var(--role);
     border-radius: var(--radius);
@@ -1158,12 +1254,23 @@ h3 {
     box-shadow: var(--shadow);
 }
 
+.role > :not(.tile__icon, h3) { grid-column: 1 / -1; }
+
 .role--green { --role: var(--green); }
 .role--purple { --role: var(--purple); }
 .role.lift:hover { border-top-color: var(--role); }
 
-.role .tile__icon { margin-bottom: var(--s-1); }
+.role .tile__icon { width: 44px; height: 44px; border-radius: 12px; }
 .role h3 { font-size: 1.25rem; }
+
+@media (min-width: 640px) {
+    .role { padding: var(--s-6); }
+}
+
+@media (min-width: 900px) {
+    .role { display: flex; flex-direction: column; align-items: stretch; gap: var(--s-3); }
+    .role .tile__icon { width: 48px; height: 48px; margin-bottom: var(--s-1); border-radius: 13px; }
+}
 .role > p { color: var(--text-3); }
 
 .role__list { display: grid; gap: 10px; margin: var(--s-2) 0 var(--s-3); }
@@ -1183,6 +1290,7 @@ h3 {
 .role__go {
     display: inline-flex;
     align-items: center;
+    justify-self: start;
     gap: var(--s-2);
     margin-top: auto;
     padding-top: var(--s-2);
@@ -1292,15 +1400,39 @@ h3 {
 .module--green { --mod: var(--green); --mod-light: var(--green-light); --mod-soft: #a7f3d0; }
 .module--orange { --mod: var(--orange); --mod-light: var(--orange-light); --mod-soft: #fed7aa; }
 
+/* Phones: a short banner. Tablets (one card per row): art beside the text,
+   so it isn't a 400px-tall banner. Three columns from 900px: art on top. */
+/* overflow: hidden lets aspect-ratio win over the drawing's own height. */
 .module__art {
     display: grid;
     place-items: center;
-    aspect-ratio: 8 / 5;
+    aspect-ratio: 5 / 2;
+    overflow: hidden;
     border-bottom: 1px solid var(--border);
     background: var(--mod-light);
 }
 
 .module__art svg { width: 100%; height: 100%; }
+
+@media (min-width: 640px) {
+    .module { flex-direction: row; }
+    .module__art {
+        flex: 0 0 38%;
+        aspect-ratio: auto;
+        border-bottom: 0;
+        border-right: 1px solid var(--border);
+    }
+}
+
+@media (min-width: 900px) {
+    .module { flex-direction: column; }
+    .module__art {
+        flex: none;
+        aspect-ratio: 8 / 5;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+}
 
 .module__body {
     display: flex;
@@ -1596,21 +1728,22 @@ h3 {
 
 .cta :focus-visible { outline-color: #fff; }
 
+/* Stacked layout (below 900px): a slim seal-and-name strip under the
+   buttons. Beside the copy from 900px: the sign-in page's tall brand panel. */
 .cta__brand {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: var(--s-4);
-    padding: var(--s-8) var(--s-6);
+    padding: var(--s-4) var(--s-5);
     border-radius: var(--radius-lg);
     background: linear-gradient(160deg, var(--navy-4) 0%, var(--navy-5) 100%);
     box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), var(--shadow-lg);
-    text-align: center;
 }
 
 .cta__seal {
-    width: 112px;
-    height: 112px;
+    flex: none;
+    width: 64px;
+    height: 64px;
     overflow: hidden;
     border: 1px solid rgb(255 255 255 / 0.2);
     border-radius: 50%;
@@ -1621,7 +1754,7 @@ h3 {
 
 .cta__school { font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.02em; color: rgb(255 255 255 / 0.9); }
 
-.cta__dots { display: flex; gap: 6px; }
+.cta__dots { display: none; gap: 6px; }
 .cta__dots i { width: 6px; height: 6px; border-radius: 50%; background: rgb(255 255 255 / 0.35); }
 .cta__dots i:nth-child(2) { background: rgb(255 255 255 / 0.65); }
 
@@ -1632,8 +1765,15 @@ h3 {
 @media (min-width: 900px) {
     .cta__panel { padding-block: var(--s-24); }
     .cta__inner { grid-template-columns: 1.2fr 0.8fr; gap: var(--s-16); }
-    .cta__brand { justify-self: end; width: min(100%, 22rem); padding: var(--s-12) var(--s-8); }
+    .cta__brand {
+        flex-direction: column;
+        justify-self: end;
+        width: min(100%, 22rem);
+        padding: var(--s-12) var(--s-8);
+        text-align: center;
+    }
     .cta__seal { width: 144px; height: 144px; }
+    .cta__dots { display: flex; }
 }
 
 /* ================= 15. LEGAL (privacy, terms accordions) ================= */
@@ -1702,13 +1842,16 @@ h3 {
 
 .footer :focus-visible { outline-color: var(--blue-mid); }
 
+/* Phones: Explore on the left, Account and Legal stacked on the right,
+   so Legal doesn't sit alone on its own row. */
 .footer__grid {
     display: grid;
-    gap: var(--s-10);
+    gap: var(--s-8) var(--s-6);
     grid-template-columns: repeat(2, 1fr);
 }
 
 .footer__brand { grid-column: 1 / -1; max-width: 22rem; }
+.footer__grid > nav:first-of-type { grid-row: span 2; }
 .footer .logo { color: #fff; }
 .footer__brand p { margin-top: var(--s-4); }
 
@@ -1751,8 +1894,9 @@ h3 {
 }
 
 @media (min-width: 768px) {
-    .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s-10); }
     .footer__brand { grid-column: auto; }
+    .footer__grid > nav:first-of-type { grid-row: auto; }
     .footer__legal { flex-direction: row; justify-content: space-between; }
 }
 

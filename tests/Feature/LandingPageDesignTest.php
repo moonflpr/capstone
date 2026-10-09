@@ -155,6 +155,63 @@ it('keeps the hero column from growing wider than a phone screen', function () {
     expect($inner[0] ?? '')->toContain('grid-template-columns: minmax(0, 1fr);');
 });
 
+it('shows the stats strip as one compact row of three on phones', function () {
+    $css = file_get_contents(resource_path('css/homepage.css'));
+
+    preg_match('/\.stats__grid\s*\{[^}]*\}/', $css, $grid);
+    preg_match('/\.stat\s*\{[^}]*\}/', $css, $stat);
+
+    expect($grid[0] ?? '')->toContain('grid-template-columns: repeat(3, minmax(0, 1fr));')
+        ->and($stat[0] ?? '')->toContain('flex-direction: column;')
+        ->and($css)->toMatch('/@media \(min-width: 640px\) \{[^@]*\.stat \{ flex-direction: row;/');
+});
+
+it('puts tile and role icons beside the heading on phones and above it on wider screens', function () {
+    $css = file_get_contents(resource_path('css/homepage.css'));
+
+    preg_match('/\.tile > div:first-child\s*\{[^}]*\}/', $css, $tileHead);
+    preg_match('/\.role\s*\{[^}]*\}/', $css, $role);
+
+    expect($tileHead[0] ?? '')->toContain('grid-template-columns: auto minmax(0, 1fr);')
+        ->and($role[0] ?? '')->toContain('grid-template-columns: auto minmax(0, 1fr);')
+        ->and($css)->toMatch('/@media \(min-width: 640px\) \{[^@]*\.tile > div:first-child \{ display: block; \}/')
+        ->and($css)->toMatch('/@media \(min-width: 900px\) \{\s*\.role \{ display: flex; flex-direction: column; align-items: stretch;/');
+});
+
+it('gives the small feature tiles evenly sized visuals', function () {
+    $html = get('/')->getContent();
+
+    preg_match('/<ul class="tile__visual mini-roster"[^>]*>(.*?)<\/ul>/s', $html, $roster);
+
+    expect(substr_count($roster[1] ?? '', '<li>'))->toBe(3)
+        ->and($roster[1] ?? '')->toContain('class="bar__fill bar__fill--done" data-width="100"')
+        ->and($html)->toContain('<div class="tile__visual saved-file" aria-hidden="true">')
+        ->and($html)->toContain('Saved to this device');
+});
+
+it('lays module cards out to fit each screen size', function () {
+    $css = file_get_contents(resource_path('css/homepage.css'));
+
+    preg_match('/\.module__art\s*\{[^}]*\}/', $css, $art);
+
+    expect($art[0] ?? '')->toContain('aspect-ratio: 5 / 2;')->toContain('overflow: hidden;')
+        ->and($css)->toMatch('/@media \(min-width: 640px\) \{\s*\.module \{ flex-direction: row; \}/')
+        ->and($css)->toMatch('/@media \(min-width: 900px\) \{\s*\.module \{ flex-direction: column; \}/');
+});
+
+it('keeps the hero title on two lines on small laptops', function () {
+    expect(file_get_contents(resource_path('css/homepage.css')))
+        ->toMatch('/@media \(min-width: 1024px\) \{\s*\.hero__title \{ font-size: clamp\(3\.25rem, 0\.5rem \+ 4\.4vw, 4\.25rem\); \}/');
+});
+
+it('stacks the account and legal footer links beside explore on phones', function () {
+    $css = file_get_contents(resource_path('css/homepage.css'));
+
+    expect($css)->toContain('.footer__grid > nav:first-of-type { grid-row: span 2; }')
+        ->toContain('.footer__grid > nav:first-of-type { grid-row: auto; }')
+        ->toContain('p { text-wrap: pretty; }');
+});
+
 it('shows the school seal in the call to action like the sign-in page', function () {
     $html = get('/')->getContent();
 

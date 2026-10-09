@@ -417,9 +417,11 @@
                     <h3>Teacher dashboard</h3>
                     <p>Follow student progress, send feedback, and generate reports and quizzes.</p>
                 </div>
-                <div class="tile__visual avatars" aria-hidden="true">
-                    <span class="avatar">MJ</span><span class="avatar">AR</span><span class="avatar">KB</span><span class="avatar">JD</span>
-                </div>
+                <ul class="tile__visual mini-roster" aria-hidden="true">
+                    <li><span class="avatar">MJ</span><span class="bar"><span class="bar__fill bar__fill--done" data-width="100"></span></span></li>
+                    <li><span class="avatar">AR</span><span class="bar"><span class="bar__fill" data-width="72"></span></span></li>
+                    <li><span class="avatar">KB</span><span class="bar"><span class="bar__fill" data-width="45"></span></span></li>
+                </ul>
             </article>
 
             <article class="tile lift reveal">
@@ -428,8 +430,12 @@
                     <h3>Offline access</h3>
                     <p>Download assessments and study offline when data or Wi-Fi runs out.</p>
                 </div>
-                <div class="tile__visual" aria-hidden="true">
-                    <span class="saved"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Saved to this device</span>
+                <div class="tile__visual saved-file" aria-hidden="true">
+                    <span class="saved-file__icon"><svg class="icon"><use href="#i-file"/></svg></span>
+                    <span class="saved-file__body">
+                        <strong>Module 1 Assessment</strong>
+                        <span class="saved"><svg class="icon"><use href="#i-check"/></svg>Saved to this device</span>
+                    </span>
                 </div>
             </article>
 
