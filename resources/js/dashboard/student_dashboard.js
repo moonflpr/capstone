@@ -925,13 +925,27 @@ Return ONLY a valid JSON array of ${items.length} strings (the rewritten version
         saveSummativeAnswers(quizScore, quizQuestions.length);
     };
 
-    // ✅ Auto-submit the summative test if the student switches tabs/apps mid-test
-    document.addEventListener('visibilitychange', () => {
+    // ✅ Auto-submit the summative test if the student switches tabs/apps mid-test,
+    // or taps a floating / pop-up window on top of it (page stays visible but loses focus)
+    const autoSubmitSummativeOnLeave = () => {
         const testInProgress = document.getElementById('quiz-question-screen')?.style.display === 'block';
-        if (document.hidden && testInProgress) {
-            window.toast('warning', '⏱️ Test auto-submitted after leaving the tab.');
+        if (testInProgress) {
+            window.toast('warning', '⏱️ Test auto-submitted after leaving the test.');
             window.submitQuiz();
         }
+    };
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            autoSubmitSummativeOnLeave();
+        }
+    });
+    window.addEventListener('blur', () => {
+        setTimeout(() => {
+            if (document.hasFocus() || document.activeElement?.tagName === 'IFRAME') {
+                return;
+            }
+            autoSubmitSummativeOnLeave();
+        }, 0);
     });
 
     /* ================================

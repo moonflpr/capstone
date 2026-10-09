@@ -1512,50 +1512,74 @@ function mqAutoSubmitDueToTabSwitch() {
 }
 
 /**
- * Tab-switch anti-cheating guard — while a Pre-Test, Activity, or
- * Post-Test is open, leaving this tab (or switching apps) immediately
- * submits whatever has been answered so far. Uses the Page Visibility
- * API rather than window.blur, since blur also fires for far less
- * meaningful focus changes (e.g. opening devtools).
+ * Anti-cheating guard — while a Pre-Test, Activity, or Post-Test is open,
+ * leaving the page immediately submits whatever has been answered so far.
+ * Two signals count as leaving: the tab becoming hidden (tab/app switch),
+ * and the window losing focus while still visible, which is what happens
+ * when the student taps a floating / pop-up / split-screen window (e.g. a
+ * ChatGPT bubble on Android) that sits on top of the quiz.
  */
 let mqAutoSubmitNoticePending = false;
 let mqAutoSubmittedPractice = false;
 
-function mqHandleVisibilityChange() {
+function mqAutoSubmitOnLeave() {
   const overlay = document.getElementById('mq-overlay');
   if (!overlay || !overlay.classList.contains('mq-open')) return;
 
-  if (document.hidden) {
-    if ((mqState.phase === 'pre' || mqState.phase === 'post') && mqState.current < mqState.questions.length) {
+  if ((mqState.phase === 'pre' || mqState.phase === 'post') && mqState.current < mqState.questions.length) {
+    mqAutoSubmittedPractice = mqState.practice;
+    mqAutoSubmitDueToTabSwitch();
+    mqAutoSubmitNoticePending = true;
+  } else if (mqState.phase === 'activity') {
+    const submitBtn = document.getElementById('mq-act-submit-btn');
+    if (submitBtn && submitBtn.style.display !== 'none') {
       mqAutoSubmittedPractice = mqState.practice;
-      mqAutoSubmitDueToTabSwitch();
+      mqSubmitActivity();
       mqAutoSubmitNoticePending = true;
-    } else if (mqState.phase === 'activity') {
-      const submitBtn = document.getElementById('mq-act-submit-btn');
-      if (submitBtn && submitBtn.style.display !== 'none') {
-        mqAutoSubmittedPractice = mqState.practice;
-        mqSubmitActivity();
-        mqAutoSubmitNoticePending = true;
-      }
     }
-  } else if (mqAutoSubmitNoticePending) {
-    mqAutoSubmitNoticePending = false;
-    Swal.fire({
-      icon:               'warning',
-      title:              'Quiz Auto-Submitted',
-      html:               `<p style="font-size:13px;color:#6b7280;font-family:'Plus Jakarta Sans',sans-serif">
-                              Switching tabs or leaving the page during a Pre-Test, Activity, or Post-Test
-                              automatically submits your answers so far — ${mqAutoSubmittedPractice
-                                ? 'since this was a practice round, nothing was saved.'
-                                : 'this counts as your attempt.'}
-                            </p>`,
-      confirmButtonColor: '#2563eb',
-      confirmButtonText:  'Got it',
-    });
   }
 }
 
+function mqShowAutoSubmitNotice() {
+  if (!mqAutoSubmitNoticePending || document.hidden || !document.hasFocus()) return;
+  mqAutoSubmitNoticePending = false;
+  Swal.fire({
+    icon:               'warning',
+    title:              'Quiz Auto-Submitted',
+    html:               `<p style="font-size:13px;color:#6b7280;font-family:'Plus Jakarta Sans',sans-serif">
+                            Switching tabs, opening another app, or using a floating window during a
+                            Pre-Test, Activity, or Post-Test automatically submits your answers so far — ${mqAutoSubmittedPractice
+                              ? 'since this was a practice round, nothing was saved.'
+                              : 'this counts as your attempt.'}
+                          </p>`,
+    confirmButtonColor: '#2563eb',
+    confirmButtonText:  'Got it',
+  });
+}
+
+function mqHandleVisibilityChange() {
+  if (document.hidden) {
+    mqAutoSubmitOnLeave();
+  } else {
+    mqShowAutoSubmitNotice();
+  }
+}
+
+/**
+ * window blur also fires when focus moves into an iframe on this same
+ * page, so wait a tick and only treat it as leaving when the document
+ * itself has truly lost focus.
+ */
+function mqHandleWindowBlur() {
+  setTimeout(() => {
+    if (document.hasFocus() || document.activeElement?.tagName === 'IFRAME') return;
+    mqAutoSubmitOnLeave();
+  }, 0);
+}
+
 document.addEventListener('visibilitychange', mqHandleVisibilityChange);
+window.addEventListener('blur', mqHandleWindowBlur);
+window.addEventListener('focus', mqShowAutoSubmitNotice);
 
 function mqStartActivity() {
   // Once the Activity's first attempt is recorded, running it again is practice.
