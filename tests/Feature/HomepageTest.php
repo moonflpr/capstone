@@ -23,11 +23,11 @@ it('renders the hero visual inline so no network image delays first paint', func
 
     preg_match('/<section class="hero".*?<\/section>/s', $html, $hero);
 
-    // The hero visual is a worked problem on the board, written as real
-    // HTML text rather than a screenshot.
+    // The hero visual is the student dashboard preview, built from HTML and
+    // inline SVG icons rather than a screenshot.
     expect($hero[0] ?? '')
-        ->toContain('<figure class="board"')
-        ->toContain('<ol class="board__steps">')
+        ->toContain('<div class="preview"')
+        ->toContain('<div class="chat-card"')
         ->not->toContain('<img')
         ->not->toContain('loading="lazy"');
 });
@@ -60,8 +60,8 @@ it('limits infinite animation to motion-safe, GPU-composited transforms', functi
     preg_match_all('/animation:\s*([\w-]+)[^;]*\binfinite\b[^;]*;/', $css, $infinite);
     expect($infinite[0])->not->toBeEmpty();
 
-    // Every looping animation (the live-data dot) only runs when the
-    // visitor hasn't asked for reduced motion.
+    // Every looping animation (the hero blob drift and the scroll cue bob)
+    // only runs when the visitor hasn't asked for reduced motion.
     preg_match_all('/@media \(prefers-reduced-motion: no-preference\)\s*\{(?:[^{}]|\{[^{}]*\})*\}/', $css, $motionSafe);
     preg_match_all('/animation:[^;]*\binfinite\b[^;]*;/', implode("\n", $motionSafe[0]), $motionSafeInfinite);
     expect($motionSafeInfinite[0])->toHaveCount(count($infinite[0]));
@@ -176,41 +176,44 @@ it('sizes the hero to the dynamic viewport height so mobile chrome cannot clip i
     expect(strpos($rule, 'min-height: 100vh'))->toBeLessThan(strpos($rule, 'min-height: 100dvh'));
 });
 
-it('keeps the hero free of template decoration: no glow blob, grid, or floating mockups', function () {
+it('keeps the hero grid and blob decoration behind the headline', function () {
     $html = get('/')->getContent();
     $css = file_get_contents(resource_path('css/homepage.css'));
 
-    preg_match('/<section class="hero".*?<\/section>/s', $html, $hero);
+    expect($html)->toContain('<div class="hero__blob" aria-hidden="true"></div>');
 
-    expect($hero[0] ?? '')
-        ->not->toContain('hero__blob')
-        ->not->toContain('hero__float')
-        ->not->toContain('class="preview"')
-        ->not->toContain('scroll-cue');
-
-    expect($css)
-        ->not->toContain('.hero__blob')
-        ->not->toContain('@keyframes float')
-        ->not->toContain('@keyframes drift');
-
-    // The only decoration is the board's chalk ledge, kept behind the content.
     preg_match('/\.hero\s*\{[^}]*\}/', $css, $hero);
-    preg_match('/\.hero::after\s*\{[^}]*\}/', $css, $ledge);
+    preg_match('/\.hero::before\s*\{[^}]*\}/', $css, $grid);
+    preg_match('/\.hero__blob\s*\{[^}]*\}/', $css, $blob);
 
     expect($hero[0] ?? '')->toContain('isolation: isolate');
-    expect($ledge[0] ?? '')->toContain('z-index: -1')->toContain('background: var(--navy-5);');
+    expect($grid[0] ?? '')->toContain('inset: 0')->toContain('z-index: -2');
+    expect($blob[0] ?? '')->toContain('z-index: -1');
 });
 
-it('links from the hero board to the features section', function () {
+it('renders an accessible animated scroll cue that targets the features section', function () {
     $html = get('/')->getContent();
+    $css = file_get_contents(resource_path('css/homepage.css'));
 
-    preg_match('/<p class="board__hint"[^>]*>.*?<\/p>/s', $html, $hint);
+    expect($html)
+        ->toContain('href="#features"')
+        ->toContain('aria-label="Scroll to features"')
+        ->toMatch('/<a[^>]+class="scroll-cue"[^>]*>\s*<svg/')
+        ->toContain('id="features"');
 
-    expect($hint[0] ?? '')
-        ->toContain('Math AI Assistant')
-        ->toContain('<a href="#features">See how</a>');
+    // Double-chevron icon: the sprite symbol it uses has two <path> elements.
+    preg_match('/<a[^>]+class="scroll-cue"[^>]*>.*?<\/a>/s', $html, $link);
+    preg_match('/<symbol id="i-chevrons"[^>]*>(.*?)<\/symbol>/s', $html, $chevrons);
+    expect($link[0] ?? '')->toContain('href="#i-chevrons"');
+    expect(substr_count($chevrons[1] ?? '', '<path'))->toBe(2);
 
-    expect($html)->toMatch('/<section[^>]+id="features"/');
+    // A 48px touch target with no badge fill behind the icon.
+    preg_match('/\.scroll-cue\s*\{[^}]*\}/', $css, $scroll);
+    expect($scroll[0] ?? '')
+        ->toContain('position: absolute')
+        ->toContain('width: 48px')
+        ->toContain('height: 48px')
+        ->not->toContain('background');
 });
 
 it('offsets in-page anchors so the fixed header cannot cover their headings', function () {

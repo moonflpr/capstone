@@ -1,16 +1,15 @@
 /* =====================================================================
    MathLearn — homepage.css
-   The school's own math site, not a startup template. The page is built
-   like a classroom: the hero is the board, with a real problem worked
-   out on it, and the rest reads like a well-set textbook: ruled lines,
-   numbered lists, real math type, and very few cards.
-   It still shares the dashboards' pieces, so moving between them feels
-   like one product: Plus Jakarta Sans, the dashboard palette, and the
-   sign-in page's muted navy for the hero, CTA band, and footer.
+   The landing page is built from the same pieces as the dashboards and
+   the sign-in page, so moving between them feels like one product:
+   - Plus Jakarta Sans, the dashboards' font
+   - the dashboard palette: blue actions, green/orange/purple icon chips,
+     white bordered cards on #f4f6fb
+   - the sign-in page's muted navy for the hero, CTA band, and footer
    Order: 1 Fonts · 2 Tokens · 3 Base · 4 Layout · 5 Buttons · 6 Nav
-          7 Hero (board) · 8 Dashboard cards · 9 At a glance · 10 Features
-          11 How a topic works · 12 Modules · 13 Teachers · 14 Accounts
-          15 FAQ · 16 CTA · 17 Legal · 18 Footer · 19 Motion
+          7 Hero · 8 Dashboard cards · 9 Stats · 10 Features (+ Dashboards)
+          11 How it works · 12 Modules · 13 Teachers (+ FAQ) · 14 CTA
+          15 Legal · 16 Footer · 17 Motion
    Motion rule: only transform + opacity are animated.
    ===================================================================== */
 
@@ -53,7 +52,7 @@
     --blue-grad-hover: linear-gradient(135deg, #3b82f6, var(--blue-dark));
 
     /* The sign-in page's muted navy (resources/css/app.css). Easy on the
-       eyes: hero, CTA band, footer. */
+       eyes behind white cards: hero, CTA band, footer. */
     --navy-1: #1e4e7f;
     --navy-2: #1b4778;
     --navy-3: #173d68;
@@ -61,21 +60,8 @@
     --navy-5: #0f2a47;
     --navy-grad: linear-gradient(135deg, var(--navy-1) 0%, var(--navy-2) 50%, var(--navy-3) 100%);
 
-    /* Chalk on the navy board. */
-    --chalk: #f1f5f9;
-    --chalk-2: rgb(241 245 249 / 0.7);
-    --chalk-3: rgb(241 245 249 / 0.45);
-    --chalk-line: rgb(255 255 255 / 0.12);
-    --chalk-blue: #93c5fd;
-
-    /* Rules between rows, a little stronger than card borders. */
-    --rule: #dde3ec;
-
-    /* Type. Math is set in a math serif that every phone and laptop
-       already has (Cambria Math on Windows, Noto Serif on Android), so it
-       costs no download. */
+    /* Type */
     --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    --font-math: 'Cambria Math', Cambria, 'STIX Two Math', 'Latin Modern Math', 'Noto Serif', Georgia, 'Times New Roman', serif;
 
     /* Spacing: 4px base */
     --s-1: 4px;
@@ -98,9 +84,11 @@
     --radius-pill: 999px;
     --radius-btn: 10px;
 
-    /* Shadows: the dashboards' two. */
+    /* Shadows: the dashboards' two, plus a deeper one for cards on navy. */
     --shadow: 0 2px 12px rgb(0 0 0 / 0.06);
     --shadow-md: 0 8px 24px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 24px 64px rgb(8 20 40 / 0.35);
+    --shadow-blue: 0 6px 16px rgb(37 99 235 / 0.3);
 
     /* Motion */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -144,12 +132,12 @@ body {
 }
 
 h1, h2, h3, p, ul, ol, figure { margin: 0; }
-ul, ol { padding: 0; list-style: none; }
-img, svg { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
 
 /* No one-word last lines ("up.", "it.") in short paragraphs. */
 p { text-wrap: pretty; }
+ul, ol { padding: 0; list-style: none; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
 
 button {
     font: inherit;
@@ -179,17 +167,6 @@ h3 {
     font-weight: 700;
     line-height: 1.3;
 }
-
-/* Math: serif, italic variables, upright numbers, as in a textbook. */
-.math {
-    font-family: var(--font-math);
-    font-weight: 400;
-    letter-spacing: 0;
-    white-space: nowrap;
-    font-variant-numeric: lining-nums;
-}
-.math var { font-style: italic; }
-.math sub { font-size: 0.62em; line-height: 0; vertical-align: -0.32em; }
 
 :focus-visible {
     outline: 3px solid var(--blue-mid);
@@ -291,13 +268,16 @@ h3 {
 
 .btn--sm { min-height: 40px; padding: 0 var(--s-5); font-size: 0.9375rem; }
 
-/* Primary: the dashboards' "AI Chat" button, with a plain shadow, not a glow. */
+/* Primary: the dashboards' "AI Chat" button. */
 .btn--primary {
     background: var(--blue-grad);
     color: #fff;
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 1px 2px rgb(15 23 42 / 0.25);
+    box-shadow: var(--shadow-blue);
 }
-.btn--primary:hover { background: var(--blue-grad-hover); }
+.btn--primary:hover {
+    background: var(--blue-grad-hover);
+    box-shadow: 0 8px 22px rgb(37 99 235 / 0.4);
+}
 
 /* Outline on light surfaces: the dashboards' white bordered buttons. */
 .btn--ghost {
@@ -313,11 +293,11 @@ h3 {
 
 /* Outline on navy. */
 .btn--ghost-light {
-    background: transparent;
+    background: rgb(255 255 255 / 0.08);
     color: #fff;
     box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.45);
 }
-.btn--ghost-light:hover { background: rgb(255 255 255 / 0.1); }
+.btn--ghost-light:hover { background: rgb(255 255 255 / 0.16); }
 
 /* ================= 6. NAV =================
    Transparent over the navy hero, then the dashboards' white header once
@@ -339,7 +319,7 @@ h3 {
     background: rgb(255 255 255 / 0.97);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--border);
+    box-shadow: 0 1px 0 var(--border), 0 4px 16px rgb(0 0 0 / 0.04);
     opacity: 0;
     pointer-events: none;
     transition: opacity 300ms var(--ease-std);
@@ -470,16 +450,15 @@ h3 {
     .nav__actions .btn { width: auto; }
 
     .nav:not(.is-scrolled) .nav__actions .btn--ghost {
-        background: transparent;
+        background: rgb(255 255 255 / 0.08);
         color: #fff;
         box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.45);
     }
-    .nav:not(.is-scrolled) .nav__actions .btn--ghost:hover { background: rgb(255 255 255 / 0.1); }
+    .nav:not(.is-scrolled) .nav__actions .btn--ghost:hover { background: rgb(255 255 255 / 0.16); }
 }
 
-/* ================= 7. HERO (the board) =================
-   The sign-in page's navy is the classroom board. No glows or floating
-   mockups: the visual is a real Module 1 problem, worked out in chalk. */
+/* ================= 7. HERO =================
+   The sign-in page's navy, with the student dashboard as the visual. */
 .hero {
     position: relative;
     isolation: isolate;
@@ -487,30 +466,55 @@ h3 {
     align-items: center;
     min-height: 100vh;
     min-height: 100dvh;
-    padding: calc(var(--nav-h) + var(--s-8)) 0 var(--s-16);
+    padding: calc(var(--nav-h) + var(--s-8)) 0 var(--s-24);
     overflow: hidden;
     background: var(--navy-grad);
     color: #fff;
 }
 
-/* The board's chalk ledge along the bottom edge. */
-.hero::after {
+/* Graph-paper grid, faded out at the edges. */
+.hero::before {
     content: "";
     position: absolute;
-    inset: auto 0 0 0;
-    z-index: -1;
-    height: 10px;
-    background: var(--navy-5);
-    box-shadow: 0 -1px 0 rgb(255 255 255 / 0.08);
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 68% 42%, black 25%, transparent 78%);
+    mask-image: radial-gradient(ellipse 85% 75% at 68% 42%, black 25%, transparent 78%);
 }
 
-/* minmax(0, 1fr): long math lines must never widen the column past a
-   phone's screen. */
+/* One slow-drifting soft glow in the dashboards' blue. A radial gradient,
+   no blur filter, so it's cheap. `closest-side` makes it fade out exactly
+   at the circle's edge, so no hard rim shows against the navy. */
+.hero__blob {
+    position: absolute;
+    z-index: -1;
+    top: 4%;
+    right: -180px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(96 165 250 / 0.22), rgb(37 99 235 / 0.12) 55%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero__blob { animation: drift 22s ease-in-out infinite alternate; will-change: transform; }
+}
+
+@keyframes drift {
+    to { transform: translate3d(-70px, 50px, 0) scale(1.08); }
+}
+
+/* minmax(0, 1fr): the preview's no-wrap module names must truncate, not
+   widen the column past a phone's screen. */
 .hero__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    gap: var(--s-10);
+    gap: var(--s-12);
 }
 
 @media (min-width: 1024px) {
@@ -520,28 +524,44 @@ h3 {
     }
 }
 
-.hero__school {
+.hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
     margin-bottom: var(--s-5);
-    font-size: 0.875rem;
+    padding: 6px 14px 6px 12px;
+    border-radius: var(--radius-pill);
+    background: rgb(255 255 255 / 0.08);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16);
+    font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--chalk-2);
+    color: rgb(255 255 255 / 0.85);
+}
+
+.hero__eyebrow-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue-mid);
+    box-shadow: 0 0 0 3px rgb(96 165 250 / 0.28);
 }
 
 .hero__title {
     font-size: clamp(2.25rem, 1.2rem + 4.4vw, 4.25rem);
     font-weight: 800;
-    line-height: 1.06;
+    line-height: 1.08;
     letter-spacing: -0.035em;
     color: #fff;
 }
 
-/* Two columns: size the title to its half of the screen, so it stays on
-   two lines on 1024-1279px laptops too. */
+/* Two columns: size the title to its half of the screen, so "has a next
+   step." stays on one line on 1024-1279px laptops too. */
 @media (min-width: 1024px) {
     .hero__title { font-size: clamp(3.25rem, 0.5rem + 4.4vw, 4.25rem); }
 }
 
 .hero__title span { display: block; }
+.hero__title em { font-style: normal; color: #93c5fd; }
 
 .hero__sub {
     margin-top: var(--s-5);
@@ -563,125 +583,270 @@ h3 {
 }
 
 .hero__note {
-    margin-top: var(--s-4);
-    font-size: 0.875rem;
-    color: var(--chalk-3);
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-top: var(--s-5);
+    font-size: 0.9375rem;
+    color: rgb(255 255 255 / 0.72);
 }
+.hero__note .icon { color: #93c5fd; }
 
-/* --- The worked problem: a recessed board, not a floating card --- */
-.board {
-    container-type: inline-size;
-    padding: var(--s-5);
-    border: 1px solid var(--chalk-line);
+/* --- Hero visual: the student dashboard, the same cards students see --- */
+.hero__visual { position: relative; }
+
+.preview {
+    max-width: 34rem;
+    margin-inline: auto;
+    overflow: hidden;
     border-radius: var(--radius-lg);
-    background: rgb(6 20 38 / 0.32);
-    box-shadow: inset 0 2px 14px rgb(0 0 0 / 0.2);
-    color: var(--chalk);
+    background: var(--bg);
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgb(255 255 255 / 0.12);
+    color: var(--text);
 }
 
-@media (min-width: 640px) {
-    .board { padding: var(--s-8); }
+.preview__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 10px var(--s-4);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
 }
 
-.board__head {
-    display: grid;
-    gap: 6px;
-    padding-bottom: var(--s-4);
-    border-bottom: 1px solid var(--chalk-line);
-}
+.preview__dots { display: flex; gap: 6px; }
+.preview__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
 
-.board__topic {
+.preview__url {
+    flex: 1;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--bg);
     font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--chalk-blue);
+    font-weight: 600;
+    color: var(--text-4);
+    text-align: center;
 }
 
-.board__title { font-size: 1.0625rem; font-weight: 600; line-height: 1.45; color: var(--chalk); }
-.board__title .math { font-size: 1.18em; }
+.preview__body { padding: var(--s-5); }
 
-/* Numbered steps. Narrow board: the reason sits under the math.
-   Wide board: number | math | reason, like a two-column solution. This
-   follows the board's own width (a container query), because the board
-   is narrowest on 1024px laptops, not on phones. */
-.board__steps { counter-reset: step; }
+.preview__hello { font-size: 1.125rem; font-weight: 800; letter-spacing: -0.02em; }
+.preview__sub { margin-top: 2px; font-size: 0.8125rem; color: var(--text-3); }
 
-.board__step {
-    counter-increment: step;
+.preview__metrics {
     display: grid;
-    grid-template-columns: 1.75rem minmax(0, 1fr);
-    align-items: baseline;
-    column-gap: var(--s-3);
-    row-gap: 2px;
-    padding: var(--s-4) 0;
-    border-bottom: 1px dashed var(--chalk-line);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-2);
+    margin-top: var(--s-4);
 }
 
-.board__step::before {
-    content: counter(step);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--chalk-3);
-    font-variant-numeric: tabular-nums;
-}
-
-.board__step > .math {
-    font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.7rem);
-    line-height: 1.3;
-    color: var(--chalk);
-}
-
-.board__why {
-    grid-column: 2;
-    font-size: 0.8125rem;
-    color: var(--chalk-2);
-}
-
-.board__step--answer { border-bottom: 0; }
-
-/* "Box your final answer." */
-.board__box {
-    display: inline-block;
-    padding: 2px 12px 4px;
-    border: 2px solid var(--chalk-blue);
-    border-radius: 6px;
-}
-
-.board__hint {
+.preview__modules {
     margin-top: var(--s-3);
-    padding-top: var(--s-4);
-    border-top: 1px solid var(--chalk-line);
-    font-size: 0.875rem;
-    color: var(--chalk-2);
+    padding: var(--s-4);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow);
 }
 
-.board__hint a {
+.preview__label { margin-bottom: var(--s-3); font-size: 0.875rem; font-weight: 800; }
+
+.pmod + .pmod { margin-top: var(--s-3); }
+
+.pmod__top {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    margin-bottom: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-2);
+}
+
+.pmod__top span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pmod__pct { font-weight: 800; color: var(--blue); font-variant-numeric: tabular-nums; }
+.pmod__pct--done { color: var(--green); }
+.pmod__lock { display: inline-flex; align-items: center; gap: 4px; color: var(--text-4); }
+.pmod__lock .icon { width: 13px; height: 13px; }
+.pmod--locked .pmod__top span:first-child { color: var(--text-4); }
+
+/* Floating cards: desktop only, so nothing can overflow small screens.
+   The wrapper takes the entrance animation and the position; the card
+   inside floats, so the two animations never share one element. */
+.hero__float {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+@media (min-width: 1024px) {
+    .hero__float { display: block; }
+    .hero__float--chat { right: -12px; bottom: -40px; }
+    .hero__float--chip { left: -24px; top: -22px; }
+}
+
+@media (min-width: 1280px) {
+    .hero__float--chat { right: -32px; }
+    .hero__float--chip { left: -32px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .chat-card { animation: float 7s ease-in-out infinite; }
+    .chip-card { animation: float 6s ease-in-out -2s infinite; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* The Math AI Assistant window, open over the dashboard like in the app. */
+.chat-card {
+    width: 16rem;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow-lg);
+    color: var(--text);
+}
+
+@media (min-width: 1280px) {
+    .chat-card { width: 17.5rem; }
+}
+
+.chat-card__head,
+.mini-chat__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--blue-grad);
     color: #fff;
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    font-size: 0.875rem;
+    line-height: 1.25;
 }
 
-@container (min-width: 30rem) {
-    .board__step { grid-template-columns: 2rem minmax(0, 1fr) auto; }
-    .board__why { grid-column: auto; text-align: right; }
+.chat-card__head strong,
+.mini-chat__head strong { display: block; font-weight: 700; }
+
+.chat-card__head .sub,
+.mini-chat__head .sub { display: block; font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
+
+.chat-card__avatar {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.18);
+}
+.chat-card__avatar .icon { width: 17px; height: 17px; stroke-width: 2; }
+
+.chat-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    padding: var(--s-3);
+    background: #f9fafb;
 }
 
-/* Short landscape phones: don't force a tall hero. */
+/* Chat bubbles: the chatbot's own (resources/css/dashboard/chatbot.css). */
+.bubble {
+    max-width: 90%;
+    padding: 9px 13px;
+    border-radius: 16px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.bubble--user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #3b82f6, var(--blue));
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.bubble--ai {
+    align-self: flex-start;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+}
+
+.bubble b { font-weight: 700; color: var(--blue-dark); }
+
+.chip-card {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow-lg);
+    color: var(--text);
+    font-size: 0.8125rem;
+    line-height: 1.35;
+}
+
+.chip-card strong { display: block; font-size: 0.875rem; }
+.chip-card .sub { color: var(--text-3); }
+
+.chip-card__icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex: none;
+    border-radius: 10px;
+    background: var(--purple-light);
+    color: var(--purple);
+}
+
+/* Scroll cue */
+.scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: var(--s-6);
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-left: -24px;
+    border-radius: 50%;
+    color: rgb(255 255 255 / 0.7);
+    transition: color 200ms var(--ease-std);
+}
+.scroll-cue:hover { color: #fff; }
+.scroll-cue .icon { width: 26px; height: 26px; }
+
+@media (prefers-reduced-motion: no-preference) {
+    .scroll-cue .icon { animation: bob 2s ease-in-out infinite; }
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* Short landscape phones: don't force a tall hero, drop the cue. */
 @media (max-height: 520px) and (orientation: landscape) {
     .hero { min-height: auto; padding-bottom: var(--s-12); }
+    .scroll-cue { display: none; }
 }
 
 /* ================= 8. DASHBOARD CARDS =================
-   The dashboards' metric card, used by the teacher dashboard preview:
-   uppercase label, tinted icon chip, big value. */
+   The dashboards' metric card, shared by the hero preview and the
+   teacher dashboard preview: uppercase label, tinted icon chip, big value. */
 .metric {
     min-width: 0;
     padding: var(--s-3);
     border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--card);
+    box-shadow: var(--shadow);
 }
 
 /* Phones: icon above the label, so a long label like "Pending feedback"
@@ -726,6 +891,8 @@ h3 {
     font-variant-numeric: tabular-nums;
 }
 
+.metric__sub { display: block; margin-top: 4px; font-size: 0.6875rem; color: var(--text-4); }
+
 @media (min-width: 640px) {
     .metric__head { flex-direction: row; justify-content: space-between; }
     .metric { padding: var(--s-4); }
@@ -739,117 +906,174 @@ h3 {
 .bar__fill { display: block; width: 0; height: 100%; border-radius: var(--radius-pill); background: var(--blue); }
 .bar__fill--done { background: var(--green); }
 
-/* ================= 9. AT A GLANCE =================
-   Plain numbers on ruled lines, like the front matter of a textbook.
-   Phones: one row per number. From 768px: three columns. */
+/* ================= 9. STATS =================
+   Below the hero, on the light background, like the dashboards' metric row. */
 .stats { padding-top: var(--s-10); }
 
 @media (min-width: 1024px) {
     .stats { padding-top: var(--s-12); }
 }
 
+/* Phones: one compact row of three (icon over number), so the strip is a
+   single glance instead of three stacked cards. Icon beside text from 640px. */
 .stats__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    border-block: 1px solid var(--rule);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-2);
 }
 
-/* Phones: a fixed number column, so every label starts at the same x. */
 .stat {
-    display: grid;
-    grid-template-columns: 5rem minmax(0, 1fr);
-    align-items: baseline;
-    column-gap: var(--s-3);
-    padding: var(--s-4) 0;
-    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-2);
+    padding: var(--s-4) var(--s-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    text-align: center;
 }
-.stat:last-child { border-bottom: 0; }
+
+@media (min-width: 640px) {
+    .stats__grid { gap: var(--s-4); }
+    .stat { flex-direction: row; gap: var(--s-4); padding: var(--s-5); text-align: left; }
+}
+
+/* Gradient icon tiles: the dashboards' action-card icons. */
+.stat__icon,
+.tile__icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: 13px;
+    background: var(--blue-grad);
+    color: #fff;
+    box-shadow: 0 6px 16px rgb(37 99 235 / 0.28);
+}
+
+.stat__icon .icon,
+.tile__icon .icon { width: 22px; height: 22px; stroke-width: 2; }
+
+.stat__icon--green,
+.tile__icon--green {
+    background: linear-gradient(135deg, #34d399, var(--green));
+    box-shadow: 0 6px 16px rgb(16 185 129 / 0.28);
+}
+
+.stat__icon--orange,
+.tile__icon--orange {
+    background: linear-gradient(135deg, #fb923c, var(--orange));
+    box-shadow: 0 6px 16px rgb(249 115 22 / 0.28);
+}
+
+.stat__icon--purple,
+.tile__icon--purple {
+    background: linear-gradient(135deg, #c084fc, var(--purple));
+    box-shadow: 0 6px 16px rgb(168 85 247 / 0.28);
+}
+
+.stat__icon { width: 40px; height: 40px; border-radius: 12px; }
+.stat__icon .icon { width: 19px; height: 19px; }
 
 .stat__num {
-    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.75rem);
+    font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.1;
     letter-spacing: -0.03em;
-    color: var(--navy-1);
     font-variant-numeric: tabular-nums;
 }
 
-.stat__label { font-size: 0.9375rem; line-height: 1.45; color: var(--text-3); }
+.stat__label { margin-top: 2px; font-size: 0.75rem; font-weight: 600; line-height: 1.35; color: var(--text-3); }
 
-@media (min-width: 768px) {
-    .stats__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .stat {
-        display: flex;
-        flex-direction: column;
-        gap: var(--s-2);
-        padding: var(--s-6);
-        border-bottom: 0;
-        border-left: 1px solid var(--rule);
-    }
-    .stat:first-child { padding-left: 0; border-left: 0; }
+@media (min-width: 640px) {
+    .stat__icon { width: 48px; height: 48px; border-radius: 13px; }
+    .stat__icon .icon { width: 22px; height: 22px; }
+    .stat__label { font-size: 0.875rem; }
 }
 
-/* ================= 10. FEATURES =================
-   Two real screens from the app, captioned above. No icon tiles. */
-.exhibits {
+/* ================= 10. FEATURES (bento) ================= */
+.bento {
     display: grid;
-    gap: var(--s-12);
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
 }
 
-@media (min-width: 900px) {
-    .exhibits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-10); }
+@media (min-width: 640px) {
+    .bento { grid-template-columns: repeat(2, 1fr); gap: var(--s-5); }
+    .tile--big { grid-column: span 2; }
+}
+
+@media (min-width: 1024px) {
+    .bento { grid-template-columns: repeat(4, 1fr); gap: var(--s-6); }
 }
 
 .tile {
     display: flex;
     flex-direction: column;
     gap: var(--s-5);
+    padding: var(--s-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
 }
 
-.tile h3 { font-size: 1.375rem; }
-.tile p { margin-top: var(--s-2); max-width: 32rem; color: var(--text-3); }
+/* Phones: icon beside the heading, so every tile is a little shorter.
+   Icon above the heading from 640px, where tiles sit side by side. */
+.tile > div:first-child {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+}
+.tile > div:first-child > p { grid-column: 1 / -1; }
+
+.tile .tile__icon { width: 44px; height: 44px; border-radius: 12px; }
+
+.tile--big h3 { font-size: 1.25rem; }
+.tile p { margin-top: var(--s-3); color: var(--text-3); }
+
+@media (min-width: 640px) {
+    .tile { padding: var(--s-6); }
+    .tile > div:first-child { display: block; }
+    .tile .tile__icon { width: 48px; height: 48px; margin-bottom: var(--s-4); border-radius: 13px; }
+    .tile--big h3 { font-size: 1.375rem; }
+    .tile p { margin-top: var(--s-2); }
+}
+
+@media (min-width: 768px) {
+    .tile--big { padding: var(--s-8); }
+}
 
 /* `.tile p` is more specific than the bubble and quiz classes, so restore
    their own colors and spacing inside tiles. */
-.tile .bubble { margin-top: 0; max-width: 90%; }
+.tile .bubble { margin-top: 0; }
 .tile .bubble--user { color: #fff; }
 .tile .bubble--ai { color: var(--text); }
 .tile .mini-quiz__q { margin-top: 0; color: var(--text); }
-.tile .mini-quiz__fb { margin-top: 0; color: var(--text-2); }
+.tile__visual { margin-top: auto; }
 
-/* Mini chatbot window: the student dashboard's Math AI Assistant. */
+/* Hover lift, shared by every card that links or feels interactive. */
+.lift {
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-std),
+        border-color 200ms var(--ease-std);
+}
+.lift:hover {
+    transform: translateY(-4px);
+    border-color: #d1d5db;
+    box-shadow: var(--shadow-md);
+}
+
+/* Mini chatbot window inside the AI tutor tile */
 .mini-chat {
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 12px;
     background: #f9fafb;
-    box-shadow: var(--shadow);
 }
-
-.mini-chat__head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
-    background: var(--blue-grad);
-    color: #fff;
-    font-size: 0.875rem;
-    line-height: 1.25;
-}
-
-.mini-chat__head strong { display: block; font-weight: 700; }
-.mini-chat__head .sub { display: block; font-size: 0.75rem; color: rgb(255 255 255 / 0.8); }
-
-.chat-card__avatar {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    flex: none;
-    border-radius: 50%;
-    background: rgb(255 255 255 / 0.18);
-}
-.chat-card__avatar .icon { width: 17px; height: 17px; stroke-width: 2; }
 
 .mini-chat__body {
     display: flex;
@@ -857,33 +1081,6 @@ h3 {
     gap: var(--s-2);
     padding: var(--s-4);
 }
-
-/* Chat bubbles: the chatbot's own (resources/css/dashboard/chatbot.css). */
-.bubble {
-    max-width: 90%;
-    padding: 9px 13px;
-    border-radius: 16px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
-.bubble--user {
-    align-self: flex-end;
-    background: linear-gradient(135deg, #3b82f6, var(--blue));
-    color: #fff;
-    border-bottom-right-radius: 4px;
-}
-
-.bubble--ai {
-    align-self: flex-start;
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-bottom-left-radius: 4px;
-}
-
-.bubble b { font-weight: 700; color: var(--blue-dark); }
 
 /* Quick replies: the chatbot's blue outline pills. */
 .chips { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 var(--s-4) var(--s-4); }
@@ -899,15 +1096,14 @@ h3 {
     line-height: 1.3;
 }
 
-/* Mini quiz: the module quiz screen. */
+/* Mini quiz inside the assessments tile */
 .mini-quiz {
     display: grid;
     gap: var(--s-2);
-    padding: var(--s-5);
+    padding: var(--s-4);
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: var(--card);
-    box-shadow: var(--shadow);
+    background: var(--bg);
 }
 
 .mini-quiz__q { margin-bottom: var(--s-1); font-weight: 700; }
@@ -929,152 +1125,321 @@ h3 {
 .mini-quiz__fb { font-size: 0.875rem; }
 .mini-quiz__fb b { color: #15803d; }
 
-/* Smaller points: a ruled list, two then four across. */
-.points {
-    display: grid;
-    margin-top: var(--s-16);
-    border-top: 1px solid var(--rule);
-}
-
-.point {
-    padding: var(--s-5) 0;
-    border-bottom: 1px solid var(--rule);
-}
-
-.point h3 { font-size: 1rem; }
-.point p { margin-top: var(--s-1); font-size: 0.9375rem; color: var(--text-3); }
+/* Small tile visuals. Each one is roughly the same height (about 100px),
+   so the four small tiles in a row don't leave big empty gaps. */
+.spark { width: 100%; max-width: 180px; height: auto; }
 
 @media (min-width: 640px) {
-    .points { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-8); }
+    .spark { max-width: 240px; }
+}
+.spark rect { fill: #bfdbfe; }
+.spark rect:last-child { fill: url(#brand-grad); }
+
+/* Same as the dashboards' student avatars. */
+.avatar {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--blue-grad);
+    color: #fff;
+    box-shadow: 0 0 0 2px var(--card);
+    font-size: 0.625rem;
+    font-weight: 800;
 }
 
-@media (min-width: 1024px) {
-    .points { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .point { padding: var(--s-6) 0; }
+/* Teacher tile: a mini class list, one progress bar per student. */
+.mini-roster { display: grid; gap: var(--s-2); }
+.mini-roster li { display: flex; align-items: center; gap: var(--s-3); }
+.mini-roster .bar { flex: 1; }
+
+/* Offline tile: a downloaded assessment. */
+.saved-file {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
 }
 
-/* ================= 11. HOW A TOPIC WORKS =================
-   The four phases on a number line: vertical on phones, a horizontal
-   line with an arrowhead from 900px. */
+.saved-file__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 10px;
+    background: var(--green-light);
+    color: var(--green);
+}
+.saved-file__icon .icon { width: 20px; height: 20px; stroke-width: 2; }
+
+.saved-file strong {
+    display: block;
+    overflow: hidden;
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.saved-file__body { display: grid; gap: 4px; min-width: 0; justify-items: start; }
+
+.saved {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--green-light);
+    color: #15803d;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.saved .icon { width: 14px; height: 14px; stroke-width: 2.5; }
+
+/* Topics unlocking in order: done, current, locked. */
+.topic-list { display: grid; gap: 6px; }
+
+.topic {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-2);
+}
+
+.topic .icon { width: 16px; height: 16px; stroke-width: 2.25; }
+.topic--done .icon { color: var(--green); }
+.topic--current { border-color: var(--blue-mid); background: var(--blue-light); color: var(--blue-dark); }
+.topic--current .icon { color: var(--blue); }
+.topic--locked,
+.topic--locked .icon { color: var(--text-4); }
+
+/* ================= DASHBOARDS (one card per role) =================
+   Each card's top edge carries its role color, like the dashboards'
+   colored section cards. */
+.roles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+}
+
+@media (min-width: 900px) {
+    .roles { grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
+}
+
+/* Stacked cards (below 900px): icon beside the heading to save height.
+   Side-by-side cards from 900px: icon above, link pinned to the bottom. */
+.role {
+    --role: var(--blue);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+    row-gap: var(--s-3);
+    padding: var(--s-5);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--role);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+}
+
+.role > :not(.tile__icon, h3) { grid-column: 1 / -1; }
+
+.role--green { --role: var(--green); }
+.role--purple { --role: var(--purple); }
+.role.lift:hover { border-top-color: var(--role); }
+
+.role .tile__icon { width: 44px; height: 44px; border-radius: 12px; }
+.role h3 { font-size: 1.25rem; }
+
+@media (min-width: 640px) {
+    .role { padding: var(--s-6); }
+}
+
+@media (min-width: 900px) {
+    .role { display: flex; flex-direction: column; align-items: stretch; gap: var(--s-3); }
+    .role .tile__icon { width: 48px; height: 48px; margin-bottom: var(--s-1); border-radius: 13px; }
+}
+.role > p { color: var(--text-3); }
+
+.role__list { display: grid; gap: 10px; margin: var(--s-2) 0 var(--s-3); }
+
+.role__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text-2);
+}
+
+.role__list .icon { width: 18px; height: 18px; margin-top: 1px; stroke-width: 2.5; color: var(--role); }
+
+.role__go {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: var(--s-2);
+    margin-top: auto;
+    padding-top: var(--s-2);
+    font-weight: 700;
+    color: var(--blue);
+}
+.role__go .icon { transition: transform 200ms var(--ease-out); }
+.role__go:hover .icon { transform: translateX(3px); }
+
+/* ================= 11. HOW IT WORKS ================= */
+.steps-panel {
+    padding: var(--s-6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+}
+
+@media (min-width: 900px) {
+    .steps-panel { padding: var(--s-12); }
+}
+
 .steps {
     --gap: var(--s-8);
-    position: relative;
     display: grid;
     gap: var(--gap);
 }
 
-.step { position: relative; padding-left: 56px; }
+.step { position: relative; padding-left: 64px; }
 
+/* Numbered squares: the teacher dashboard's section markers. */
 .step__num {
     position: absolute;
     left: 0;
-    top: -4px;
-    z-index: 1;
+    top: 0;
     display: grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    border: 2px solid var(--navy-1);
-    border-radius: 50%;
-    background: var(--card);
-    color: var(--navy-1);
-    font-size: 0.9375rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 1.125rem;
     font-weight: 800;
+    box-shadow: 0 4px 12px rgb(15 23 42 / 0.15);
 }
 
-.step:last-child .step__num { background: var(--navy-1); color: #fff; }
+.step__num--blue { background: #3b82f6; }
+.step__num--green { background: var(--green); }
+.step__num--orange { background: var(--orange); }
 
-/* Phones: a vertical line through the points. */
+/* Connector: vertical on mobile ... */
 .step:not(:last-child)::after {
     content: "";
     position: absolute;
-    left: 17px;
-    top: 32px;
-    bottom: calc(-1 * var(--gap) - 4px);
+    left: 21px;
+    top: 52px;
+    bottom: calc(-1 * var(--gap) + 8px);
     width: 2px;
-    background: var(--navy-1);
+    background: var(--border);
 }
 
 .step p { margin-top: var(--s-2); color: var(--text-3); }
 
+/* ... horizontal from 900px */
 @media (min-width: 900px) {
-    .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .step { padding: 60px var(--s-6) 0 0; }
-    .step__num { top: 0; }
-    .step:not(:last-child)::after { display: none; }
+    .steps { --gap: var(--s-12); grid-template-columns: repeat(3, 1fr); }
+    .step { padding: 64px 0 0; }
 
-    /* One number line under all four points, with an arrowhead. */
-    .steps::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 10px;
-        top: 17px;
+    .step:not(:last-child)::after {
+        left: 56px;
+        right: calc(-1 * var(--gap) + 12px);
+        top: 21px;
+        bottom: auto;
+        width: auto;
         height: 2px;
-        background: var(--navy-1);
     }
-
-    .steps::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 12px;
-        border-block: 6px solid transparent;
-        border-left: 11px solid var(--navy-1);
-    }
-}
-
-/* A textbook-style "Note" box. */
-.steps__note {
-    max-width: 44rem;
-    margin-top: var(--s-12);
-    padding: var(--s-4) var(--s-5);
-    border-left: 3px solid var(--orange);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    background: var(--orange-light);
-    color: #9a3412;
-    font-size: 0.9375rem;
 }
 
 /* ================= 12. MODULES =================
-   A table of contents. One color per module, the same as on the
-   dashboards: Module 1 blue, Module 2 green, Module 3 orange.
-   Topics are numbered 1.1, 1.2, … from CSS counters. */
+   One color per module, the same as on the dashboards:
+   Module 1 blue, Module 2 green, Module 3 orange. */
 .modules {
-    counter-reset: module;
-    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+}
+
+@media (min-width: 900px) {
+    .modules { grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
 }
 
 .module {
     --mod: var(--blue);
     --mod-light: var(--blue-light);
     --mod-soft: #bfdbfe;
-    counter-increment: module;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    column-gap: var(--s-5);
-    row-gap: var(--s-5);
-    padding: var(--s-8) 0;
-    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
     cursor: pointer;
 }
 
 .module--green { --mod: var(--green); --mod-light: var(--green-light); --mod-soft: #a7f3d0; }
 .module--orange { --mod: var(--orange); --mod-light: var(--orange-light); --mod-soft: #fed7aa; }
 
-.module__num {
-    font-size: 2.25rem;
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    color: var(--mod);
-    font-variant-numeric: tabular-nums;
+/* Phones: a short banner. Tablets (one card per row): art beside the text,
+   so it isn't a 400px-tall banner. Three columns from 900px: art on top. */
+/* overflow: hidden lets aspect-ratio win over the drawing's own height. */
+.module__art {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 5 / 2;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--mod-light);
+}
+
+.module__art svg { width: 100%; height: 100%; }
+
+@media (min-width: 640px) {
+    .module { flex-direction: row; }
+    .module__art {
+        flex: 0 0 38%;
+        aspect-ratio: auto;
+        border-bottom: 0;
+        border-right: 1px solid var(--border);
+    }
+}
+
+@media (min-width: 900px) {
+    .module { flex-direction: column; }
+    .module__art {
+        flex: none;
+        aspect-ratio: 8 / 5;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
 }
 
 .module__body {
-    display: grid;
-    gap: var(--s-2);
-    justify-items: start;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding: var(--s-5) var(--s-6) var(--s-6);
 }
 
 /* Same as the dashboards' module topic line. */
@@ -1086,72 +1451,31 @@ h3 {
     color: var(--mod);
 }
 
-.module__body h3 { font-size: 1.25rem; transition: color 200ms var(--ease-std); }
 .module__body p { font-size: 0.9375rem; color: var(--text-3); }
-.module:hover .module__body h3 { color: var(--blue-dark); }
 
-.module__topics {
-    grid-column: 2;
-    counter-reset: topic;
-    display: grid;
-    gap: var(--s-2);
-}
+.module__topics { display: flex; flex-wrap: wrap; gap: 6px; }
 
 .module__topics li {
-    counter-increment: topic;
-    display: flex;
-    gap: var(--s-3);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    line-height: 1.4;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--mod-light);
     color: var(--text-2);
-}
-
-.module__topics li::before {
-    content: counter(module) "." counter(topic);
-    flex: none;
-    min-width: 2.2em;
-    font-weight: 700;
-    color: var(--mod);
-    font-variant-numeric: tabular-nums;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.35;
 }
 
 .module__go {
     display: inline-flex;
     align-items: center;
     gap: var(--s-2);
-    margin-top: var(--s-1);
-    font-size: 0.9375rem;
+    margin-top: auto;
+    padding-top: var(--s-2);
     font-weight: 700;
     color: var(--blue);
 }
 .module__go .icon { transition: transform 200ms var(--ease-out); }
 .module:hover .module__go .icon { transform: translateX(3px); }
-
-/* Illustrations only where there's room beside the text. */
-.module__art { display: none; }
-
-@media (min-width: 900px) {
-    .module {
-        grid-template-columns: 4.5rem minmax(0, 1.1fr) minmax(0, 1fr) 12rem;
-        column-gap: var(--s-8);
-        align-items: start;
-    }
-
-    .module__num { font-size: 3rem; }
-    .module__topics { grid-column: auto; padding-top: 2px; }
-
-    .module__art {
-        display: grid;
-        place-items: center;
-        aspect-ratio: 8 / 5;
-        overflow: hidden;
-        border-radius: 12px;
-        background: var(--mod-light);
-    }
-
-    .module__art svg { width: 100%; height: 100%; }
-}
 
 /* Illustration strokes, in each module's color */
 .art-line { fill: none; stroke: var(--mod); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
@@ -1181,7 +1505,19 @@ h3 {
     color: var(--text-2);
 }
 
-.checklist .icon { width: 20px; height: 20px; margin-top: 2px; stroke-width: 2.5; color: var(--blue); }
+.checklist .check {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    margin-top: 1px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--blue-grad);
+    color: #fff;
+    box-shadow: 0 4px 10px rgb(37 99 235 / 0.25);
+}
+.checklist .check .icon { width: 15px; height: 15px; stroke-width: 2.5; }
 
 /* Teacher dashboard preview */
 .dash {
@@ -1189,7 +1525,7 @@ h3 {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--bg);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 @media (min-width: 768px) {
@@ -1259,6 +1595,7 @@ h3 {
     border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--card);
+    box-shadow: var(--shadow);
 }
 
 .row__top {
@@ -1273,85 +1610,8 @@ h3 {
 .row__pct { font-weight: 800; color: var(--blue); font-variant-numeric: tabular-nums; }
 .row__pct--done { color: var(--green); }
 
-/* ================= 14. ACCOUNTS (one dashboard per role) =================
-   Three ruled columns, each marked with its role color, like the
-   dashboards' colored sections. Stacked rows below 900px. */
-.roles {
-    display: grid;
-    border-top: 1px solid var(--rule);
-}
-
-.role {
-    --role: var(--blue);
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-3);
-    padding: var(--s-8) 0;
-    border-bottom: 1px solid var(--rule);
-}
-
-.role--green { --role: var(--green); }
-.role--purple { --role: var(--purple); }
-
-.role h3 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.25rem;
-}
-
-.role h3::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    flex: none;
-    border-radius: 3px;
-    background: var(--role);
-}
-
-.role > p { color: var(--text-3); }
-
-.role__list { display: grid; gap: var(--s-2); margin: var(--s-1) 0 var(--s-2); }
-
-.role__list li {
-    position: relative;
-    padding-left: 18px;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    line-height: 1.45;
-    color: var(--text-2);
-}
-
-.role__list li::before {
-    content: "–";
-    position: absolute;
-    left: 0;
-    font-weight: 700;
-    color: var(--role);
-}
-
-.role__go {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    gap: var(--s-2);
-    margin-top: auto;
-    padding-top: var(--s-2);
-    font-weight: 700;
-    color: var(--blue);
-}
-.role__go .icon { transition: transform 200ms var(--ease-out); }
-.role__go:hover .icon { transform: translateX(3px); }
-
-@media (min-width: 900px) {
-    .roles { grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--rule); }
-    .role { padding: var(--s-8); border-bottom: 0; border-left: 1px solid var(--rule); }
-    .role:first-child { padding-left: 0; border-left: 0; }
-    .role:last-child { padding-right: 0; }
-}
-
-/* ================= 15. FAQ =================
-   Ruled rows, like the legal panels' chevron. On wide screens the
+/* ================= FAQ =================
+   Same card and chevron as the legal accordions. On wide screens the
    heading stays in view beside the questions. */
 .faq { display: grid; gap: var(--s-2); }
 
@@ -1369,18 +1629,26 @@ h3 {
     }
 }
 
-.faq__list { border-top: 1px solid var(--rule); }
+.faq__list { display: grid; gap: var(--s-3); }
 
-.faq__item { border-bottom: 1px solid var(--rule); }
+.faq__item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    transition: border-color 200ms var(--ease-std);
+}
+
+.faq__item[open] { border-color: var(--blue-mid); }
 
 .faq__item > summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--s-4);
-    min-height: 64px;
-    padding: var(--s-4) 0;
-    font-size: 1.0625rem;
+    min-height: 60px;
+    padding: var(--s-4) var(--s-5);
+    border-radius: var(--radius);
     font-weight: 700;
     cursor: pointer;
     list-style: none;
@@ -1391,18 +1659,34 @@ h3 {
 .faq__item > summary .icon { color: var(--blue); transition: transform 200ms var(--ease-out); }
 .faq__item[open] > summary .icon { transform: rotate(180deg); }
 
-.faq__item p { max-width: 60ch; padding: 0 0 var(--s-5); color: var(--text-3); }
+.faq__item p { padding: 0 var(--s-5) var(--s-5); color: var(--text-3); }
 .faq__item a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
-/* ================= 16. CTA BAND =================
+/* ================= 14. CTA BAND =================
    Full-bleed, flush on every side: the sign-in page's navy, with its
    brand panel (the school seal) beside the copy. */
 .cta__panel {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
     padding-block: var(--s-16);
     background: var(--navy-grad);
     color: #fff;
+}
+
+/* graph-paper grid, fading out toward the copy */
+.cta__panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(80% 100% at 100% 50%, #000, transparent);
+    mask-image: radial-gradient(80% 100% at 100% 50%, #000, transparent);
 }
 
 .cta__inner {
@@ -1453,7 +1737,7 @@ h3 {
     padding: var(--s-4) var(--s-5);
     border-radius: var(--radius-lg);
     background: linear-gradient(160deg, var(--navy-4) 0%, var(--navy-5) 100%);
-    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), var(--shadow-lg);
 }
 
 .cta__seal {
@@ -1492,7 +1776,7 @@ h3 {
     .cta__dots { display: flex; }
 }
 
-/* ================= 17. LEGAL (privacy, terms accordions) ================= */
+/* ================= 15. LEGAL (privacy, terms accordions) ================= */
 .legal-home { padding-block: var(--s-8) var(--s-16); }
 .legal-home__list { display: grid; gap: var(--s-4); max-width: 52rem; }
 
@@ -1500,6 +1784,7 @@ h3 {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
+    box-shadow: var(--shadow);
 }
 
 .legal-doc > summary {
@@ -1547,7 +1832,7 @@ h3 {
 .legal a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
 .legal a:hover { color: var(--blue-dark); }
 
-/* ================= 18. FOOTER =================
+/* ================= 16. FOOTER =================
    The sign-in page's deepest navy (its brand panel). */
 .footer {
     padding: var(--s-16) 0 var(--s-8);
@@ -1615,13 +1900,12 @@ h3 {
     .footer__legal { flex-direction: row; justify-content: space-between; }
 }
 
-/* ================= 19. MOTION =================
-   Hero entrance: rise + fade, 600ms. The board's steps are written one
-   after another, so the "next step" idea plays out once on load. The
-   subhead is left static on purpose: it's the LCP element, and a
-   transform animation on it would delay the LCP timestamp. */
+/* ================= 17. MOTION =================
+   Hero entrance: rise + fade, 600ms, 80ms stagger. The subhead is left
+   static on purpose: it's the LCP element, and a transform animation on
+   it would delay the LCP timestamp. */
 @keyframes rise {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: none; }
 }
 
@@ -1635,18 +1919,29 @@ h3 {
 }
 .hero [data-enter="1"] { animation-delay: 0ms; }
 .hero [data-enter="2"] { animation-delay: 80ms; }
-.hero [data-enter="3"] { animation-delay: 200ms; }
-.hero [data-enter="4"] { animation-delay: 280ms; }
-.hero [data-enter="5"] { animation-delay: 550ms; }
-.hero [data-enter="6"] { animation-delay: 850ms; }
-.hero [data-enter="7"] { animation-delay: 1150ms; }
-.hero [data-enter="8"] { animation-delay: 1450ms; }
+.hero [data-enter="3"] { animation-delay: 240ms; }
+.hero [data-enter="4"] { animation-delay: 320ms; }
+.hero [data-enter="5"] { animation-delay: 400ms; }
+.hero [data-enter="6"] { animation-delay: 640ms; }
+.hero [data-enter="7"] { animation-delay: 720ms; }
+
+/* The preview's progress bars fill once, after the card has landed.
+   scaleX keeps it a transform, not a width animation. */
+.preview .bar__fill {
+    transform-origin: left center;
+    animation: fill 900ms var(--ease-out) 900ms backwards;
+}
+
+@keyframes fill {
+    from { transform: scaleX(0); }
+}
 
 /* Scroll reveal: only hidden once JS is confirmed (html.js). JS removes
-   the .reveal class after the transition. */
+   the .reveal class after the transition, which hands the element back
+   to its hover styles. */
 html.js .reveal {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(20px);
     transition: opacity 600ms var(--ease-out) var(--reveal-delay, 0ms),
         transform 600ms var(--ease-out) var(--reveal-delay, 0ms);
 }
@@ -1659,7 +1954,9 @@ html.js .reveal.is-in {
 /* Reduced motion: no transforms, keep opacity. */
 @media (prefers-reduced-motion: reduce) {
     .hero [data-enter] { animation-name: fade; animation-duration: 300ms; }
+    .preview .bar__fill { animation: none; }
     html.js .reveal { transform: none; transition: opacity 300ms linear; }
+    .lift:hover { transform: none; }
     .btn:active,
     .socials a:active,
     .nav__toggle:active { transform: none; }
