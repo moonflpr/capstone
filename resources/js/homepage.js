@@ -1,7 +1,7 @@
 /* =====================================================================
    MathLearn — homepage.js
    Nav state + mobile menu · current-section highlight · scroll reveal
-   (once) · stat counters (once) · hero parallax. Animates
+   (once) · progress bar widths · legal panels. Animates
    transform/opacity only. Every effect is skipped or simplified under
    prefers-reduced-motion.
    ===================================================================== */
@@ -146,82 +146,6 @@ if (!('IntersectionObserver' in window)) {
     );
 
     revealTargets.forEach((el) => revealObserver.observe(el));
-}
-
-// ================= STAT COUNTERS (count up once) =================
-const counters = Array.from(document.querySelectorAll('[data-count]'));
-
-if (counters.length && 'IntersectionObserver' in window && !reduceMotion) {
-    const format = (el, value) => {
-        const suffix = el.dataset.suffix || '';
-        return `${Math.round(value).toLocaleString('en-PH')}${suffix}`;
-    };
-
-    const run = (el) => {
-        const target = Number(el.dataset.count) || 0;
-        const duration = 1200;
-        const start = performance.now();
-
-        const frame = (now) => {
-            const t = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(2, -10 * t); // ease-out expo
-            el.textContent = format(el, target * eased);
-            if (t < 1) requestAnimationFrame(frame);
-        };
-
-        requestAnimationFrame(frame);
-    };
-
-    const counterObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                counterObserver.unobserve(entry.target);
-                run(entry.target);
-            });
-        },
-        { threshold: 0.6 }
-    );
-
-    counters.forEach((el) => {
-        el.textContent = format(el, 0);
-        counterObserver.observe(el);
-    });
-}
-
-// ================= HERO PARALLAX (desktop only, tiny) =================
-const hero = document.querySelector('.hero');
-const parallaxEl = document.querySelector('[data-parallax]');
-
-if (hero && parallaxEl && !reduceMotion && 'IntersectionObserver' in window) {
-    const desktop = window.matchMedia('(min-width: 1024px)');
-    let heroVisible = true;
-    let frame = 0;
-
-    const update = () => {
-        frame = 0;
-        if (!desktop.matches) {
-            parallaxEl.style.transform = '';
-            return;
-        }
-        const y = Math.min(window.scrollY, window.innerHeight);
-        parallaxEl.style.transform = `translate3d(0, ${(y * 0.08).toFixed(1)}px, 0)`;
-    };
-
-    new IntersectionObserver(([entry]) => {
-        heroVisible = entry.isIntersecting;
-        if (heroVisible) update();
-    }).observe(hero);
-
-    window.addEventListener(
-        'scroll',
-        () => {
-            if (heroVisible && !frame) frame = requestAnimationFrame(update);
-        },
-        { passive: true }
-    );
-
-    desktop.addEventListener('change', update);
 }
 
 // ================= DATA-DRIVEN BAR WIDTHS =================

@@ -54,19 +54,22 @@ it('leaves no blue-to-green brand gradient on the landing page', function () {
         ->not->toContain('--accent-');
 });
 
-it('previews the student dashboard in the hero', function () {
+it('works a real Module 1 problem step by step on the hero board', function () {
     $html = get('/')->getContent();
 
     preg_match('/<section class="hero".*?<\/section>/s', $html, $hero);
+    $hero = $hero[0] ?? '';
 
-    expect($hero[0] ?? '')
-        ->toContain('Overall progress')
-        ->toContain('Topics done')
-        ->toContain('Learning Modules')
-        ->toContain('Sequences and Series')
-        ->toContain('Polynomials and Polynomial Equations')
-        ->toContain('Advanced Equations and Functions')
-        ->toContain('Math AI Assistant');
+    expect($hero)
+        ->toContain('Module 1 · Arithmetic Sequence')
+        ->toContain('Find the 10th term of <span class="math">3, 7, 11, 15, …</span>')
+        ->toContain('<var>d</var> = 7 − 3 = 4')
+        ->toContain('<var>a</var><sub>10</sub> = 3 + (10 − 1)(4)')
+        ->toContain('<span class="board__box"><var>a</var><sub>10</sub> = 39</span>')
+        ->and(substr_count($hero, '<li class="board__step'))->toBe(4);
+
+    // Math is set in a math serif the device already has, so it costs no download.
+    expect(cssToken('homepage.css', '--font-math'))->toStartWith("'cambria math'");
 });
 
 it('shows each module in its dashboard color with all twelve topics', function () {
@@ -130,15 +133,22 @@ it('highlights the nav link for the section in view', function () {
         ->toContain('.nav.is-scrolled .nav__links a.is-active');
 });
 
-it('floats the hero cards on wrappers so the entrance and float never share an element', function () {
+it('writes the board steps one after another on load', function () {
     $html = get('/')->getContent();
+    $css = file_get_contents(resource_path('css/homepage.css'));
 
-    expect($html)
-        ->toMatch('/<div class="hero__float hero__float--chat" data-enter="6"[^>]*>\s*<div class="chat-card">/')
-        ->toMatch('/<div class="hero__float hero__float--chip" data-enter="7"[^>]*>\s*<div class="chip-card">/');
+    preg_match_all('/<li class="board__step[^"]*" data-enter="(\d)">/', $html, $steps);
 
-    expect(file_get_contents(resource_path('css/homepage.css')))
-        ->toMatch('/@keyframes float\s*\{[^@]*translateY\(-8px\)/');
+    expect($steps[1])->toBe(['5', '6', '7', '8']);
+
+    $delays = array_map(function (string $step) use ($css): int {
+        preg_match('/\.hero \[data-enter="'.$step.'"\] \{ animation-delay: (\d+)ms; \}/', $css, $delay);
+
+        return (int) ($delay[1] ?? -1);
+    }, $steps[1]);
+
+    expect($delays)->each->toBeGreaterThan(0)
+        ->and($delays)->toBe(collect($delays)->sort()->values()->all());
 });
 
 it('keeps the stats cards below the hero instead of overlapping it', function () {
@@ -155,48 +165,56 @@ it('keeps the hero column from growing wider than a phone screen', function () {
     expect($inner[0] ?? '')->toContain('grid-template-columns: minmax(0, 1fr);');
 });
 
-it('shows the stats strip as one compact row of three on phones', function () {
+it('sets the at-a-glance numbers on ruled lines instead of icon cards', function () {
+    $html = get('/')->getContent();
     $css = file_get_contents(resource_path('css/homepage.css'));
 
+    preg_match('/<section class="stats".*?<\/section>/s', $html, $stats);
     preg_match('/\.stats__grid\s*\{[^}]*\}/', $css, $grid);
     preg_match('/\.stat\s*\{[^}]*\}/', $css, $stat);
 
-    expect($grid[0] ?? '')->toContain('grid-template-columns: repeat(3, minmax(0, 1fr));')
-        ->and($stat[0] ?? '')->toContain('flex-direction: column;')
-        ->and($css)->toMatch('/@media \(min-width: 640px\) \{[^@]*\.stat \{ flex-direction: row;/');
+    expect($stats[0] ?? '')->not->toContain('stat__icon')->not->toContain('data-count')
+        ->and($grid[0] ?? '')->toContain('border-block: 1px solid var(--rule);')
+        ->and($stat[0] ?? '')->toContain('grid-template-columns: 5rem minmax(0, 1fr);')
+        ->and($css)->toMatch('/@media \(min-width: 768px\) \{\s*\.stats__grid \{ grid-template-columns: repeat\(3, minmax\(0, 1fr\)\); \}/');
 });
 
-it('puts tile and role icons beside the heading on phones and above it on wider screens', function () {
-    $css = file_get_contents(resource_path('css/homepage.css'));
-
-    preg_match('/\.tile > div:first-child\s*\{[^}]*\}/', $css, $tileHead);
-    preg_match('/\.role\s*\{[^}]*\}/', $css, $role);
-
-    expect($tileHead[0] ?? '')->toContain('grid-template-columns: auto minmax(0, 1fr);')
-        ->and($role[0] ?? '')->toContain('grid-template-columns: auto minmax(0, 1fr);')
-        ->and($css)->toMatch('/@media \(min-width: 640px\) \{[^@]*\.tile > div:first-child \{ display: block; \}/')
-        ->and($css)->toMatch('/@media \(min-width: 900px\) \{\s*\.role \{ display: flex; flex-direction: column; align-items: stretch;/');
-});
-
-it('gives the small feature tiles evenly sized visuals', function () {
+it('drops the gradient icon tiles for ruled lists and small role color markers', function () {
     $html = get('/')->getContent();
-
-    preg_match('/<ul class="tile__visual mini-roster"[^>]*>(.*?)<\/ul>/s', $html, $roster);
-
-    expect(substr_count($roster[1] ?? '', '<li>'))->toBe(3)
-        ->and($roster[1] ?? '')->toContain('class="bar__fill bar__fill--done" data-width="100"')
-        ->and($html)->toContain('<div class="tile__visual saved-file" aria-hidden="true">')
-        ->and($html)->toContain('Saved to this device');
-});
-
-it('lays module cards out to fit each screen size', function () {
     $css = file_get_contents(resource_path('css/homepage.css'));
 
-    preg_match('/\.module__art\s*\{[^}]*\}/', $css, $art);
+    expect($html)->not->toContain('tile__icon')->not->toContain('stat__icon')
+        ->and($css)->not->toContain('.tile__icon')
+        ->and($css)->toMatch('/\.role h3::before \{[^}]*background: var\(--role\);/')
+        ->and($css)->toMatch('/\.role__list li::before \{[^}]*content: "–";/');
 
-    expect($art[0] ?? '')->toContain('aspect-ratio: 5 / 2;')->toContain('overflow: hidden;')
-        ->and($css)->toMatch('/@media \(min-width: 640px\) \{\s*\.module \{ flex-direction: row; \}/')
-        ->and($css)->toMatch('/@media \(min-width: 900px\) \{\s*\.module \{ flex-direction: column; \}/');
+    preg_match('/<ul class="points">(.*?)<\/ul>/s', $html, $points);
+
+    expect(substr_count($points[1] ?? '', 'class="point reveal"'))->toBe(4);
+});
+
+it('explains the four phases of every topic on a number line', function () {
+    $html = get('/')->getContent();
+    $css = file_get_contents(resource_path('css/homepage.css'));
+
+    preg_match('/<section[^>]+id="how-it-works".*?<\/section>/s', $html, $section);
+    preg_match_all('/<li class="step">.*?<h3>(.*?)<\/h3>/s', $section[0] ?? '', $phases);
+
+    expect($phases[1])->toBe(['Pre-test', 'Lesson', 'Activity', 'Post-test'])
+        ->and($section[0] ?? '')->toContain('leaving the page submits your answers')
+        ->and($css)->toMatch('/\.steps::after \{[^}]*border-left: 11px solid var\(--navy-1\);/');
+});
+
+it('sets the modules as a numbered table of contents', function () {
+    $html = get('/')->getContent();
+    $css = file_get_contents(resource_path('css/homepage.css'));
+
+    preg_match_all('/<span class="module__num" aria-hidden="true">(\d+)<\/span>/', $html, $numbers);
+
+    expect($numbers[1])->toBe(['01', '02', '03'])
+        ->and($html)->toContain('<li>The Remainder Theorem and Factor Theorem</li>')
+        ->and($css)->toContain('content: counter(module) "." counter(topic);')
+        ->and($css)->toMatch('/\.module__art \{ display: none; \}/');
 });
 
 it('keeps the hero title on two lines on small laptops', function () {

@@ -89,29 +89,15 @@
         </g>
     </symbol>
     <symbol id="i-trend" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></symbol>
-    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></symbol>
-    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
-    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
-    <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></symbol>
     <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13v1M15 13v1M2 13v2M22 13v2"/></symbol>
-    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
-    <symbol id="i-board" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
-    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8.5 5 3.5-5 3.5z"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
-    <symbol id="i-chevrons" viewBox="0 0 24 24"><path d="M7 6l5 5 5-5"/><path d="M7 13l5 5 5-5"/></symbol>
-    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 5.5C4.5 4 8 4 12 6.5c4-2.5 7.5-2.5 10-1v13c-2.5-1.5-6-1.5-10 1-4-2.5-7.5-2.5-10-1z"/><path d="M12 6.5v13"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/></symbol>
-    <symbol id="i-quiz" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10"/><path d="m3.5 6 1.5 1.5L7.5 5M3.5 12 5 13.5 7.5 11M3.5 18 5 19.5 7.5 17"/></symbol>
-    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></symbol>
     <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.3c2 .8 3.5 2.8 3.5 5.7"/></symbol>
     <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M19 8v6M16 11h6"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
-    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4"/><path d="M5 19h14"/></symbol>
     <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14.5 21v-8h2.7l.5-3.2h-3.2V7.9c0-.9.4-1.6 1.7-1.6h1.6V3.4c-.3 0-1.3-.2-2.3-.2-2.4 0-4 1.5-4 4.1v2.5H8.8V13h2.7v8z"/></symbol>
     <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="m10.5 9.5 4 2.5-4 2.5z"/></symbol>
 </svg>
@@ -137,8 +123,8 @@
             <nav aria-label="Primary">
                 <ul class="nav__links">
                     <li><a href="#features" data-spy>Features</a></li>
-                    <li><a href="#dashboards" data-spy>Dashboards</a></li>
                     <li><a href="#modules" data-spy>Modules</a></li>
+                    <li><a href="#dashboards" data-spy>Accounts</a></li>
                     <li><a href="#faq" data-spy>FAQ</a></li>
                 </ul>
             </nav>
@@ -160,20 +146,15 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="top" aria-labelledby="hero-title">
 
-    <div class="hero__blob" aria-hidden="true"></div>
-
     <div class="container hero__inner">
 
         <div class="hero__copy">
 
-            <p class="hero__eyebrow" data-enter="1">
-                <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-                Bubog National High School · Junior High Math
-            </p>
+            <p class="hero__school" data-enter="1">Bubog National High School · Junior High Math</p>
 
             <h1 class="hero__title" id="hero-title">
                 <span data-enter="1">Every problem</span>
-                <span data-enter="2">has a <em>next step.</em></span>
+                <span data-enter="2">has a next step.</span>
             </h1>
 
             <p class="hero__sub">
@@ -189,160 +170,92 @@
             </div>
 
             <p class="hero__note" data-enter="4">
-                <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
-                Sign in as a student, teacher, or admin, with your school email or Google.
+                Students, teachers, and admins sign in with their school email or Google.
             </p>
 
         </div>
 
-        <!-- Hero visual: the student dashboard itself, the same cards students see after signing in -->
-        <div class="hero__visual" data-parallax>
+        <!-- Hero visual: a real Module 1 problem, solved on the board the way a
+             teacher would write it (statement on the left, reason on the right).
+             It's real text, so screen readers get the same solution. -->
+        <figure class="board" data-enter="3" aria-labelledby="board-title">
+            <figcaption class="board__head">
+                <span class="board__topic">Module 1 · Arithmetic Sequence</span>
+                <span class="board__title" id="board-title">Find the 10th term of <span class="math">3, 7, 11, 15, …</span></span>
+            </figcaption>
 
-            <div class="preview" data-enter="5" role="img"
-                 aria-label="Preview of the student dashboard: overall progress 76 percent, 9 of 12 topics done, a 5-day streak, and progress in each of the three modules.">
+            <ol class="board__steps">
+                <li class="board__step" data-enter="5">
+                    <span class="math"><var>d</var> = 7 − 3 = 4</span>
+                    <span class="board__why">Common difference</span>
+                </li>
+                <li class="board__step" data-enter="6">
+                    <span class="math"><var>a</var><sub><var>n</var></sub> = <var>a</var><sub>1</sub> + (<var>n</var> − 1)<var>d</var></span>
+                    <span class="board__why">Formula</span>
+                </li>
+                <li class="board__step" data-enter="7">
+                    <span class="math"><var>a</var><sub>10</sub> = 3 + (10 − 1)(4)</span>
+                    <span class="board__why">Substitute <span class="math"><var>n</var> = 10</span></span>
+                </li>
+                <li class="board__step board__step--answer" data-enter="8">
+                    <span class="math"><span class="board__box"><var>a</var><sub>10</sub> = 39</span></span>
+                    <span class="board__why">Answer</span>
+                </li>
+            </ol>
 
-                <div class="preview__bar" aria-hidden="true">
-                    <span class="preview__dots"><i></i><i></i><i></i></span>
-                    <span class="preview__url">Student dashboard</span>
-                </div>
-
-                <div class="preview__body" aria-hidden="true">
-                    <p class="preview__hello">Welcome back, Student!</p>
-                    <p class="preview__sub">Continue your mathematics learning journey</p>
-
-                    <div class="preview__metrics">
-                        <div class="metric">
-                            <div class="metric__head">
-                                <span class="metric__label">Overall progress</span>
-                                <span class="metric__icon metric__icon--green"><svg class="icon"><use href="#i-trend"/></svg></span>
-                            </div>
-                            <b class="metric__value">76%</b>
-                            <span class="metric__sub">across all modules</span>
-                        </div>
-                        <div class="metric">
-                            <div class="metric__head">
-                                <span class="metric__label">Topics done</span>
-                                <span class="metric__icon metric__icon--orange"><svg class="icon"><use href="#i-award"/></svg></span>
-                            </div>
-                            <b class="metric__value">9/12</b>
-                            <span class="metric__sub">keep going!</span>
-                        </div>
-                        <div class="metric">
-                            <div class="metric__head">
-                                <span class="metric__label">Streak</span>
-                                <span class="metric__icon metric__icon--blue"><svg class="icon"><use href="#i-target"/></svg></span>
-                            </div>
-                            <b class="metric__value">5</b>
-                            <span class="metric__sub">days in a row</span>
-                        </div>
-                    </div>
-
-                    <div class="preview__modules">
-                        <p class="preview__label">Learning Modules</p>
-                        <div class="pmod">
-                            <div class="pmod__top"><span>Sequences and Series</span><span class="pmod__pct pmod__pct--done">100%</span></div>
-                            <div class="bar"><span class="bar__fill bar__fill--done" data-width="100"></span></div>
-                        </div>
-                        <div class="pmod">
-                            <div class="pmod__top"><span>Polynomials and Polynomial Equations</span><span class="pmod__pct">67%</span></div>
-                            <div class="bar"><span class="bar__fill" data-width="67"></span></div>
-                        </div>
-                        <div class="pmod pmod--locked">
-                            <div class="pmod__top"><span>Advanced Equations and Functions</span><span class="pmod__lock"><svg class="icon"><use href="#i-lock"/></svg>Locked</span></div>
-                            <div class="bar"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            {{-- The wrapper does the entrance; the card inside floats, so the two animations never share one element. --}}
-            <div class="hero__float hero__float--chat" data-enter="6" aria-hidden="true">
-                <div class="chat-card">
-                    <div class="chat-card__head">
-                        <span class="chat-card__avatar"><svg class="icon"><use href="#i-bot"/></svg></span>
-                        <span><strong>Math AI Assistant</strong><span class="sub">Online</span></span>
-                    </div>
-                    <div class="chat-card__body">
-                        <p class="bubble bubble--user">Paano hanapin ang roots ng x² − 4x + 3?</p>
-                        <p class="bubble bubble--ai">I-factor muna: <b>(x − 1)(x − 3) = 0</b>, kaya x = 1 o x = 3.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero__float hero__float--chip" data-enter="7" aria-hidden="true">
-                <div class="chip-card">
-                    <span class="chip-card__icon"><svg class="icon"><use href="#i-clipboard"/></svg></span>
-                    <span><strong>Summative Test: 9 of 10</strong><span class="sub">Instant feedback</span></span>
-                </div>
-            </div>
-
-        </div>
+            <p class="board__hint" data-enter="8">
+                Stuck on a step? The Math AI Assistant explains it.
+                <a href="#features">See how</a>
+            </p>
+        </figure>
 
     </div>
 
-    <a href="#features" class="scroll-cue" aria-label="Scroll to features">
-        <svg class="icon" aria-hidden="true"><use href="#i-chevrons"/></svg>
-    </a>
-
 </section>
 
-<!-- ================= TRUST STRIP ================= -->
+<!-- ================= AT A GLANCE =================
+     Plain numbers on a ruled line, no cards or icons. -->
 <section class="stats" aria-label="Math Learning at a glance">
     <div class="container stats__grid">
 
-        <div class="stat">
-            <span class="stat__icon stat__icon--blue" aria-hidden="true"><svg class="icon"><use href="#i-book"/></svg></span>
-            <div>
-                <p class="stat__num" data-count="{{ $stats['modules'] }}">{{ $stats['modules'] }}</p>
-                <p class="stat__label">learning modules</p>
-            </div>
-        </div>
+        <p class="stat">
+            <b class="stat__num">{{ $stats['modules'] }}</b>
+            <span class="stat__label">modules, from sequences to logarithms</span>
+        </p>
 
-        <div class="stat">
-            <span class="stat__icon stat__icon--orange" aria-hidden="true"><svg class="icon"><use href="#i-target"/></svg></span>
-            <div>
-                <p class="stat__num" data-count="{{ $stats['topics'] }}">{{ $stats['topics'] }}</p>
-                <p class="stat__label">topics to master</p>
-            </div>
-        </div>
+        <p class="stat">
+            <b class="stat__num">{{ $stats['topics'] }}</b>
+            <span class="stat__label">topics, each with a pre-test and a post-test</span>
+        </p>
 
-        <div class="stat">
+        <p class="stat">
             @if (! empty($stats['students']))
-                <span class="stat__icon stat__icon--green" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
-                <div>
-                    <p class="stat__num" data-count="{{ $stats['students'] }}">{{ number_format($stats['students']) }}</p>
-                    <p class="stat__label">students learning</p>
-                </div>
+                <b class="stat__num">{{ number_format($stats['students']) }}</b>
+                <span class="stat__label">students learning</span>
             @else
-                <span class="stat__icon stat__icon--purple" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
-                <div>
-                    <p class="stat__num">24/7</p>
-                    <p class="stat__label">AI tutor help</p>
-                </div>
+                <b class="stat__num">24/7</b>
+                <span class="stat__label">help from the AI tutor, even the night before a test</span>
             @endif
-        </div>
+        </p>
 
     </div>
 </section>
 
-<!-- ================= FEATURES (bento) ================= -->
+<!-- ================= FEATURES ================= -->
 <section class="section" id="features" aria-labelledby="features-title">
     <div class="container">
 
         <div class="section__head reveal">
-            <h2 id="features-title">Everything for learning math, in one place</h2>
-            <p>From the first lesson to the last quiz, Math Learning keeps students practicing and teachers informed.</p>
+            <h2 id="features-title">What's inside</h2>
+            <p>Lessons, quizzes, and a tutor for Junior High math, made to work on the phone in your pocket.</p>
         </div>
 
-        <div class="bento">
+        <div class="exhibits">
 
-            <!-- Big tile: AI chatbot -->
-            <article class="tile tile--big lift reveal">
+            <article class="tile tile--big reveal">
                 <div>
-                    <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
-                    <h3>An AI tutor that shows its work</h3>
-                    <p>Stuck on a problem at home? Ask the chatbot and get the steps, not only the answer, any time of day.</p>
+                    <h3>A tutor that shows its work</h3>
+                    <p>Ask the way you'd ask a classmate. The Math AI Assistant walks you through the steps instead of only giving the answer.</p>
                 </div>
                 <div class="tile__visual mini-chat" aria-hidden="true">
                     <div class="mini-chat__head">
@@ -350,8 +263,8 @@
                         <span><strong>Math AI Assistant</strong><span class="sub">Online</span></span>
                     </div>
                     <div class="mini-chat__body">
-                        <p class="bubble bubble--user">Give me a hint for 3, 7, 11, …</p>
-                        <p class="bubble bubble--ai">Look at the gap between each term. What do you notice?</p>
+                        <p class="bubble bubble--user">Paano hanapin ang roots ng x² − 4x + 3?</p>
+                        <p class="bubble bubble--ai">I-factor muna: <b>(x − 1)(x − 3) = 0</b>, kaya x = 1 o x = 3.</p>
                     </div>
                     <ul class="chips">
                         <li class="chip">Explain factoring</li>
@@ -361,12 +274,10 @@
                 </div>
             </article>
 
-            <!-- Big tile: assessments -->
-            <article class="tile tile--big lift reveal">
+            <article class="tile tile--big reveal">
                 <div>
-                    <span class="tile__icon tile__icon--purple"><svg class="icon" aria-hidden="true"><use href="#i-quiz"/></svg></span>
                     <h3>Quizzes that tell you why</h3>
-                    <p>Take a summative test and see your result right away, so you know exactly what to review next.</p>
+                    <p>See right away which answers are right, so you know what to review before the post-test.</p>
                 </div>
                 <div class="tile__visual mini-quiz" aria-hidden="true">
                     <p class="mini-quiz__q">Which number comes next? 3, 7, 11, …</p>
@@ -380,169 +291,94 @@
                 </div>
             </article>
 
-            <article class="tile lift reveal">
-                <div>
-                    <span class="tile__icon tile__icon--orange"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></span>
-                    <h3>Interactive modules</h3>
-                    <p>Three modules of Junior High School math, split into short topics that unlock as you go.</p>
-                </div>
-                <ul class="tile__visual topic-list" aria-hidden="true">
-                    <li class="topic topic--done"><svg class="icon"><use href="#i-check"/></svg>Arithmetic</li>
-                    <li class="topic topic--done"><svg class="icon"><use href="#i-check"/></svg>Geometric</li>
-                    <li class="topic topic--current"><svg class="icon"><use href="#i-play"/></svg>Harmonic</li>
-                    <li class="topic topic--locked"><svg class="icon"><use href="#i-lock"/></svg>Fibonacci</li>
-                </ul>
-            </article>
-
-            <article class="tile lift reveal">
-                <div>
-                    <span class="tile__icon tile__icon--green"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
-                    <h3>Progress tracking</h3>
-                    <p>Follow your overall progress, topics finished, and daily streak.</p>
-                </div>
-                <div class="tile__visual" aria-hidden="true">
-                    <svg class="spark" viewBox="0 0 120 48" focusable="false">
-                        <rect x="0" y="34" width="16" height="14" rx="4"/>
-                        <rect x="26" y="26" width="16" height="22" rx="4"/>
-                        <rect x="52" y="30" width="16" height="18" rx="4"/>
-                        <rect x="78" y="16" width="16" height="32" rx="4"/>
-                        <rect x="104" y="4" width="16" height="44" rx="4"/>
-                    </svg>
-                </div>
-            </article>
-
-            <article class="tile lift reveal">
-                <div>
-                    <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
-                    <h3>Teacher dashboard</h3>
-                    <p>Follow student progress, send feedback, and generate reports and quizzes.</p>
-                </div>
-                <ul class="tile__visual mini-roster" aria-hidden="true">
-                    <li><span class="avatar">MJ</span><span class="bar"><span class="bar__fill bar__fill--done" data-width="100"></span></span></li>
-                    <li><span class="avatar">AR</span><span class="bar"><span class="bar__fill" data-width="72"></span></span></li>
-                    <li><span class="avatar">KB</span><span class="bar"><span class="bar__fill" data-width="45"></span></span></li>
-                </ul>
-            </article>
-
-            <article class="tile lift reveal">
-                <div>
-                    <span class="tile__icon tile__icon--green"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></span>
-                    <h3>Offline access</h3>
-                    <p>Download assessments and study offline when data or Wi-Fi runs out.</p>
-                </div>
-                <div class="tile__visual saved-file" aria-hidden="true">
-                    <span class="saved-file__icon"><svg class="icon"><use href="#i-file"/></svg></span>
-                    <span class="saved-file__body">
-                        <strong>Module 1 Assessment</strong>
-                        <span class="saved"><svg class="icon"><use href="#i-check"/></svg>Saved to this device</span>
-                    </span>
-                </div>
-            </article>
-
         </div>
+
+        <ul class="points">
+            <li class="point reveal">
+                <h3>Topics open in order</h3>
+                <p>Each topic opens after you finish the one before it, so you never skip a step you'll need later.</p>
+            </li>
+            <li class="point reveal">
+                <h3>Your progress is saved</h3>
+                <p>Your dashboard keeps your overall progress, the topics you've finished, and your daily streak.</p>
+            </li>
+            <li class="point reveal">
+                <h3>Study without data</h3>
+                <p>Download materials from Offline Materials and keep studying when your load runs out.</p>
+            </li>
+            <li class="point reveal">
+                <h3>Notes from your teacher</h3>
+                <p>Your teacher can send you feedback on your work, right on your dashboard.</p>
+            </li>
+        </ul>
+
     </div>
 </section>
 
-<!-- ================= DASHBOARDS (one per role) =================
-     Mirrors the three real dashboards: what each role sees after signing in. -->
-<section class="section section--white" id="dashboards" aria-labelledby="dashboards-title">
+<!-- ================= HOW EACH TOPIC WORKS =================
+     The four phases every topic has in the app, drawn on a number line. -->
+<section class="section section--white" id="how-it-works" aria-labelledby="how-title">
     <div class="container">
 
         <div class="section__head reveal">
-            <h2 id="dashboards-title">One platform, three dashboards</h2>
-            <p>Every account opens its own dashboard. Students learn, teachers guide, and admins keep everything running.</p>
+            <h2 id="how-title">How each topic works</h2>
+            <p>All twelve topics follow the same four steps, so you always know what comes next.</p>
         </div>
 
-        <div class="roles">
+        <ol class="steps reveal">
+            <li class="step">
+                <span class="step__num" aria-hidden="true">1</span>
+                <h3>Pre-test</h3>
+                <p>A short quiz shows what you already know before the lesson starts.</p>
+            </li>
+            <li class="step">
+                <span class="step__num" aria-hidden="true">2</span>
+                <h3>Lesson</h3>
+                <p>Read the lesson and its worked examples at your own pace.</p>
+            </li>
+            <li class="step">
+                <span class="step__num" aria-hidden="true">3</span>
+                <h3>Activity</h3>
+                <p>Practice problems. Pass the activity to open the post-test.</p>
+            </li>
+            <li class="step">
+                <span class="step__num" aria-hidden="true">4</span>
+                <h3>Post-test</h3>
+                <p>The final check. Your first attempt is the one that counts, and you can practice again after.</p>
+            </li>
+        </ol>
 
-            <article class="role role--blue lift reveal">
-                <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg></span>
-                <h3>Student</h3>
-                <p>Learn one topic at a time and see exactly how far you've come.</p>
-                <ul class="role__list">
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Modules with pre-tests and post-tests</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Math AI Assistant with a calculator</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Progress, streak, and the summative test</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Teacher feedback and offline materials</li>
-                </ul>
-                <a href="{{ route('student.login') }}" class="role__go">Sign in as a student <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </article>
-
-            <article class="role role--green lift reveal">
-                <span class="tile__icon tile__icon--green"><svg class="icon" aria-hidden="true"><use href="#i-board"/></svg></span>
-                <h3>Teacher</h3>
-                <p>Guide each section, from new sign-ups to the final class record.</p>
-                <ul class="role__list">
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Approve students and manage sections</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Class record and reports as PDF or Excel</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>AI quiz generator for tests and activities</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Upload modules and send feedback</li>
-                </ul>
-                <a href="{{ route('teacher.login') }}" class="role__go">Sign in as a teacher <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </article>
-
-            <article class="role role--purple lift reveal">
-                <span class="tile__icon tile__icon--purple"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
-                <h3>Admin</h3>
-                <p>Keep accounts, content, and the platform itself in good shape.</p>
-                <ul class="role__list">
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Users, roles, and teacher approvals</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Analytics on sign-ups and completion</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Review and approve learning materials</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Activity log, settings, and maintenance mode</li>
-                </ul>
-                <a href="{{ route('admin.login') }}" class="role__go">Admin sign in <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </article>
-
-        </div>
-    </div>
-</section>
-
-<!-- ================= HOW IT WORKS ================= -->
-<section class="section" id="how-it-works" aria-labelledby="how-title">
-    <div class="container">
-
-        <div class="section__head reveal">
-            <h2 id="how-title">Get started in three steps</h2>
-            <p>No setup, no long tutorials. Create an account and open your first lesson.</p>
-        </div>
-
-        <div class="steps-panel reveal">
-            <ol class="steps">
-                <li class="step">
-                    <span class="step__num step__num--blue" aria-hidden="true">1</span>
-                    <h3>Create your account</h3>
-                    <p>Sign up as a student or a teacher, then sign in from any device.</p>
-                </li>
-                <li class="step">
-                    <span class="step__num step__num--green" aria-hidden="true">2</span>
-                    <h3>Learn and practice</h3>
-                    <p>Open a module, work through the lessons, and ask the AI tutor when you get stuck.</p>
-                </li>
-                <li class="step">
-                    <span class="step__num step__num--orange" aria-hidden="true">3</span>
-                    <h3>Check your progress</h3>
-                    <p>Take quizzes, get instant feedback, and watch your scores grow. Teachers see it too.</p>
-                </li>
-            </ol>
-        </div>
+        <p class="steps__note reveal">
+            During a pre-test, activity, or post-test, leaving the page submits your answers. Stay on the quiz until you finish.
+        </p>
 
     </div>
 </section>
 
 <!-- ================= MODULES =================
-     The three modules in the app. Topics inside each module unlock in order. -->
-<section class="section section--white" id="modules" aria-labelledby="modules-title">
+     A table of contents: the three modules in the app, with their real
+     topic names. Topics inside each module unlock in order. -->
+<section class="section" id="modules" aria-labelledby="modules-title">
     <div class="container">
 
         <div class="section__head reveal">
-            <h2 id="modules-title">Three modules, one step at a time</h2>
-            <p>Each module is split into topics that unlock as you finish the one before it.</p>
+            <h2 id="modules-title">What you'll study</h2>
+            <p>Three modules and twelve topics. Each module opens once you finish the one before it.</p>
         </div>
 
         <div class="modules">
 
             <a href="{{ route('signin-signin') }}" class="module module--blue lift reveal">
+                <span class="module__num" aria-hidden="true">01</span>
+                <div class="module__body">
+                    <span class="module__label">Module 1 · 5 topics</span>
+                    <h3>Sequences and Series</h3>
+                    <p>Spot the pattern, find the next term, and add up a series.</p>
+                    <span class="module__go">Sign in to start <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+                </div>
+                <ul class="module__topics" aria-label="Topics">
+                    <li>Arithmetic Sequence</li><li>Geometric Sequence</li><li>Harmonic Sequence</li><li>Fibonacci Sequence</li><li>Finite and Infinite Sequence</li>
+                </ul>
                 <div class="module__art">
                     <svg viewBox="0 0 200 125" aria-hidden="true" focusable="false">
                         <line class="art-axis" x1="16" y1="88" x2="184" y2="88"/>
@@ -562,18 +398,19 @@
                         <text class="art-txt" x="150" y="110" text-anchor="middle">15</text>
                     </svg>
                 </div>
-                <div class="module__body">
-                    <span class="module__label">Module 1 · 5 topics</span>
-                    <h3>Sequences and Series</h3>
-                    <p>Spot the pattern, find the next term, and add up a series.</p>
-                    <ul class="module__topics" aria-label="Topics">
-                        <li>Arithmetic</li><li>Geometric</li><li>Harmonic</li><li>Fibonacci</li><li>Finite and Infinite</li>
-                    </ul>
-                    <span class="module__go">Sign in to start <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-                </div>
             </a>
 
             <a href="{{ route('signin-signin') }}" class="module module--green lift reveal">
+                <span class="module__num" aria-hidden="true">02</span>
+                <div class="module__body">
+                    <span class="module__label">Module 2 · 3 topics</span>
+                    <h3>Polynomials and Polynomial Equations</h3>
+                    <p>Divide polynomials, use the remainder and factor theorems, and solve polynomial equations.</p>
+                    <span class="module__go">Sign in to start <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+                </div>
+                <ul class="module__topics" aria-label="Topics">
+                    <li>Division of Polynomials</li><li>The Remainder Theorem and Factor Theorem</li><li>Polynomial Equations</li>
+                </ul>
                 <div class="module__art">
                     <svg viewBox="0 0 200 125" aria-hidden="true" focusable="false">
                         <line class="art-axis" x1="16" y1="68" x2="184" y2="68"/>
@@ -582,18 +419,19 @@
                         <text class="art-txt" x="150" y="24">f(x)</text>
                     </svg>
                 </div>
-                <div class="module__body">
-                    <span class="module__label">Module 2 · 3 topics</span>
-                    <h3>Polynomials and Polynomial Equations</h3>
-                    <p>Work with polynomial expressions and solve polynomial equations step by step.</p>
-                    <ul class="module__topics" aria-label="Topics">
-                        <li>Division of Polynomials</li><li>Remainder and Factor Theorem</li><li>Polynomial Equations</li>
-                    </ul>
-                    <span class="module__go">Sign in to start <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-                </div>
             </a>
 
             <a href="{{ route('signin-signin') }}" class="module module--orange lift reveal">
+                <span class="module__num" aria-hidden="true">03</span>
+                <div class="module__body">
+                    <span class="module__label">Module 3 · 4 topics</span>
+                    <h3>Advanced Equations and Functions</h3>
+                    <p>Take on harder equations and see how functions behave on a graph.</p>
+                    <span class="module__go">Sign in to start <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+                </div>
+                <ul class="module__topics" aria-label="Topics">
+                    <li>Rational Functions</li><li>Radical Equations</li><li>Exponential Functions</li><li>Logarithmic Functions</li>
+                </ul>
                 <div class="module__art">
                     <svg viewBox="0 0 200 125" aria-hidden="true" focusable="false">
                         <line class="art-axis" x1="16" y1="90" x2="184" y2="90"/>
@@ -602,15 +440,6 @@
                         <path class="art-soft" d="M28 104L172 40"/>
                         <text class="art-txt" x="150" y="24">y</text>
                     </svg>
-                </div>
-                <div class="module__body">
-                    <span class="module__label">Module 3 · 4 topics</span>
-                    <h3>Advanced Equations and Functions</h3>
-                    <p>Take on harder equations and see how functions behave on a graph.</p>
-                    <ul class="module__topics" aria-label="Topics">
-                        <li>Rational Functions</li><li>Radical Equations</li><li>Exponential Functions</li><li>Logarithmic Functions</li>
-                    </ul>
-                    <span class="module__go">Sign in to start <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
                 </div>
             </a>
 
@@ -623,14 +452,14 @@
     <div class="container split">
 
         <div class="reveal">
-            <h2 id="teachers-title">Spend less time checking, more time teaching</h2>
-            <p class="lead">Track progress, send feedback, and generate quizzes with AI, all from one dashboard.</p>
+            <h2 id="teachers-title">For teachers: see how every section is doing</h2>
+            <p class="lead">Approve your students, follow their progress by module, and send feedback, without collecting a single paper.</p>
 
             <ul class="checklist">
-                <li><span class="check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>See results as soon as students submit</li>
-                <li><span class="check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>See each student's progress by module</li>
-                <li><span class="check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>Send personalized feedback to students</li>
-                <li><span class="check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>Generate reports, keep a class record, and create AI-powered pre-tests and post-tests</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>See results as soon as students submit</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>See each student's progress by module</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Send personalized feedback to students</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Generate reports, keep a class record, and create AI-powered pre-tests and post-tests</li>
             </ul>
 
             <a href="{{ route('signin-signup') }}" class="btn btn--primary">
@@ -699,6 +528,59 @@
     </div>
 </section>
 
+<!-- ================= ACCOUNTS (one dashboard per role) =================
+     Mirrors the three real dashboards: what each role sees after signing in.
+     Set as three ruled columns, not cards. -->
+<section class="section section--white" id="dashboards" aria-labelledby="dashboards-title">
+    <div class="container">
+
+        <div class="section__head reveal">
+            <h2 id="dashboards-title">Three kinds of accounts</h2>
+            <p>Each account opens its own dashboard. Students learn, teachers guide, and admins keep everything running.</p>
+        </div>
+
+        <div class="roles">
+
+            <article class="role role--blue lift reveal">
+                <h3>Student</h3>
+                <p>Learn one topic at a time and see exactly how far you've come.</p>
+                <ul class="role__list">
+                    <li>Modules with pre-tests and post-tests</li>
+                    <li>Math AI Assistant with a calculator</li>
+                    <li>Progress, streak, and the summative test</li>
+                    <li>Teacher feedback and offline materials</li>
+                </ul>
+                <a href="{{ route('student.login') }}" class="role__go">Sign in as a student <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
+
+            <article class="role role--green lift reveal">
+                <h3>Teacher</h3>
+                <p>Guide each section, from new sign-ups to the final class record.</p>
+                <ul class="role__list">
+                    <li>Approve students and manage sections</li>
+                    <li>Class record and reports as PDF or Excel</li>
+                    <li>AI quiz generator for tests and activities</li>
+                    <li>Upload modules and send feedback</li>
+                </ul>
+                <a href="{{ route('teacher.login') }}" class="role__go">Sign in as a teacher <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
+
+            <article class="role role--purple lift reveal">
+                <h3>Admin</h3>
+                <p>Keep accounts, content, and the platform itself in good shape.</p>
+                <ul class="role__list">
+                    <li>Users, roles, and teacher approvals</li>
+                    <li>Analytics on sign-ups and completion</li>
+                    <li>Review and approve learning materials</li>
+                    <li>Activity log, settings, and maintenance mode</li>
+                </ul>
+                <a href="{{ route('admin.login') }}" class="role__go">Admin sign in <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
 <!-- ================= FAQ =================
      Answers match how the app actually works (approvals, Google sign-in,
      offline materials). Update them if those flows change. -->
@@ -706,8 +588,8 @@
     <div class="container faq">
 
         <div class="section__head reveal">
-            <h2 id="faq-title">Questions, answered</h2>
-            <p>The things students and teachers ask most before they sign up.</p>
+            <h2 id="faq-title">Before you sign up</h2>
+            <p>What students and teachers ask us most.</p>
         </div>
 
         <div class="faq__list reveal">
@@ -747,15 +629,15 @@
 </section>
 
 <!-- ================= FINAL CTA =================
-     Full-bleed gradient band, flush on every side (edge to edge, no gap above
+     Full-bleed navy band, flush on every side (edge to edge, no gap above
      or below). Only the content sits in the container. -->
 <section class="cta" aria-labelledby="cta-title">
     <div class="cta__panel">
         <div class="container cta__inner reveal">
 
             <div class="cta__copy">
-                <h2 id="cta-title">Ready for your first lesson?</h2>
-                <p>Join Math Learning and take math one step at a time.</p>
+                <h2 id="cta-title">Start with Module 1.</h2>
+                <p>Create your account. Once your teacher approves it, your first topic is waiting: the arithmetic sequence.</p>
 
                 <div class="cta__actions">
                     <a href="{{ route('signin-signup') }}" class="btn btn--primary">
@@ -981,7 +863,7 @@
                     <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo-mark"/></svg>
                     <span>Math Learn</span>
                 </a>
-                <p>Empowering students through interactive mathematics education.</p>
+                <p>A math learning platform made for the students and teachers of Bubog National High School.</p>
 
                 @if (collect($socials)->contains(fn ($s) => ! empty($s['url'])))
                     <ul class="socials">
@@ -1002,10 +884,10 @@
                 <h3>Explore</h3>
                 <ul>
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#dashboards">Dashboards</a></li>
-                    <li><a href="#how-it-works">How it works</a></li>
+                    <li><a href="#how-it-works">How a topic works</a></li>
                     <li><a href="#modules">Modules</a></li>
                     <li><a href="#teachers">For teachers</a></li>
+                    <li><a href="#dashboards">Accounts</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
